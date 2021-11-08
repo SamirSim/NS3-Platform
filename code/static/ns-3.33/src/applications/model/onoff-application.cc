@@ -230,7 +230,6 @@ void OnOffApplication::StopApplication () // Called at time specified by Stop
   NS_LOG_FUNCTION (this);
 
   CancelEvents ();
-  std::cout << "Sent bytes: " << m_totBytes << std::endl;
   if(m_socket != 0)
     {
       m_socket->Close ();

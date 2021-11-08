@@ -100,7 +100,7 @@ const submit_btn = document.getElementById("submit_btn");
 //Toggle spinner loading when click submit button
 submit_btn.addEventListener("click", function(){
     spinner.style.display = "inherit";
-    setTimeout(stopSpinner,10000);
+    //setTimeout(stopSpinner,99999999);
 });
 
 function stopSpinner(){

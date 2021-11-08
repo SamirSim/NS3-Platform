@@ -1,13 +1,13 @@
-# project ns (3.33) configured on Tue Nov  2 14:01:33 2021 by
+# project ns (3.33) configured on Sun Nov  7 12:56:57 2021 by
 # waf 2.0.21 (abi 20, python 30806f0 on darwin)
 # using ./waf configure --disable-werror
 #
 ----------------------------------------
 Setting top to
-/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33
+/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33
 ----------------------------------------
 Setting out to
-/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build
+/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build
 ----------------------------------------
 Checking for 'clang' (C compiler)
 find program=['clang'] paths=['/Users/samirsim/Desktop/Plateforme/LIP-master/platform-venv/bin', '/opt/local/bin', '/opt/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin', '/Library/TeX/texbin', '/Library/Apple/usr/bin', '/opt/local/bin', '/opt/local/sbin'] var='CC' -> ['/usr/bin/clang']
@@ -54,8 +54,8 @@ out: #define _LP64 1
 #define __DBL_MIN__ 2.2250738585072014e-308
 #define __DECIMAL_DIG__ __LDBL_DECIMAL_DIG__
 #define __DYNAMIC__ 1
-#define __ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__ 110000
-#define __ENVIRONMENT_OS_VERSION_MIN_REQUIRED__ 110000
+#define __ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__ 120000
+#define __ENVIRONMENT_OS_VERSION_MIN_REQUIRED__ 120000
 #define __FINITE_MATH_ONLY__ 0
 #define __FLT16_DECIMAL_DIG__ 5
 #define __FLT16_DENORM_MIN__ 5.9604644775390625e-8F16
@@ -432,8 +432,8 @@ out: #define _LP64 1
 #define __DBL_MIN__ 2.2250738585072014e-308
 #define __DECIMAL_DIG__ __LDBL_DECIMAL_DIG__
 #define __DYNAMIC__ 1
-#define __ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__ 110000
-#define __ENVIRONMENT_OS_VERSION_MIN_REQUIRED__ 110000
+#define __ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__ 120000
+#define __ENVIRONMENT_OS_VERSION_MIN_REQUIRED__ 120000
 #define __FINITE_MATH_ONLY__ 0
 #define __FLT16_DECIMAL_DIG__ 5
 #define __FLT16_DENORM_MIN__ 5.9604644775390625e-8F16
@@ -768,16 +768,16 @@ int main() { return 0; }
 <==
 [1/1] Compiling [32mbuild/.conf_check_040c0dd0eda912b8b29d7d1ce92ad6d6/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_040c0dd0eda912b8b29d7d1ce92ad6d6/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_040c0dd0eda912b8b29d7d1ce92ad6d6/testbuild/test.cpp.1.o']
 ok
 ------------------------------------------------
 Checking boost includes
 headers not found, please provide a --boost-includes argument (see help)
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33: The configuration failed
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33: The configuration failed
 ------------------------------------------------
 Checking boost includes
 headers not found, please provide a --boost-includes argument (see help)
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33: The configuration failed
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33: The configuration failed
 ------------------------------------------------
 Checking for program 'python'
 /Users/samirsim/Desktop/Plateforme/LIP-master/platform-venv/bin/python3
@@ -815,7 +815,7 @@ out: '/Users/samirsim/Desktop/Plateforme/LIP-master/platform-venv'
 ''
 '10.15'
 '/usr/bin/clang -bundle -undefined dynamic_lookup -L/opt/local/lib -Wl,-headerpad_max_install_names -Wl,-syslibroot,/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk '
-'-Wno-unused-result -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -pipe -Os -isysroot/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk '
+'-Wno-unused-result -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -pipe -Os  '
 '3.8'
 
 err: <string>:4: DeprecationWarning: SO is deprecated, use EXT_SUFFIX
@@ -829,7 +829,7 @@ err: <string>:4: DeprecationWarning: SO is deprecated, use EXT_SUFFIX
 ''
 '10.15'
 '/usr/bin/clang -bundle -undefined dynamic_lookup -L/opt/local/lib -Wl,-headerpad_max_install_names -Wl,-syslibroot,/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk '
-'-Wno-unused-result -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -pipe -Os -isysroot/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk '
+'-Wno-unused-result -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -pipe -Os  '
 '3.8'
 
 Configuration returned from ['/Users/samirsim/Desktop/Plateforme/LIP-master/platform-venv/bin/python3']:
@@ -842,7 +842,7 @@ INCLUDEPY = '/opt/local/Library/Frameworks/Python.framework/Versions/3.8/include
 Py_ENABLE_SHARED = ''
 MACOSX_DEPLOYMENT_TARGET = '10.15'
 LDSHARED = '/usr/bin/clang -bundle -undefined dynamic_lookup -L/opt/local/lib -Wl,-headerpad_max_install_names -Wl,-syslibroot,/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk '
-CFLAGS = '-Wno-unused-result -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -pipe -Os -isysroot/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk '
+CFLAGS = '-Wno-unused-result -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -pipe -Os  '
 LDVERSION = '3.8'
 
 ------------------------------------------------
@@ -852,7 +852,7 @@ find program=['/Users/samirsim/Desktop/Plateforme/LIP-master/platform-venv/bin/p
 --------------------------------------------------------------------------
 Asking python-config for pyembed '--cflags --libs --ldflags --embed' flags
 ['/opt/local/bin/python3.8-config', '--cflags', '--libs', '--ldflags', '--embed']
-out: -I/opt/local/Library/Frameworks/Python.framework/Versions/3.8/include/python3.8 -I/opt/local/Library/Frameworks/Python.framework/Versions/3.8/include/python3.8 -Wno-unused-result -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -pipe -Os -isysroot/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk
+out: -I/opt/local/Library/Frameworks/Python.framework/Versions/3.8/include/python3.8 -I/opt/local/Library/Frameworks/Python.framework/Versions/3.8/include/python3.8 -Wno-unused-result -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -pipe -Os
 -lpython3.8 -ldl -framework CoreFoundation
 -L/opt/local/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/config-3.8-darwin -lpython3.8 -ldl -framework CoreFoundation
 
@@ -886,17 +886,15 @@ int main(int argc, char **argv)
 <==
 [1/2] Compiling [32mbuild/.conf_check_b367436918f7cae05acae23362c521b8/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-fno-common', '-dynamic', '-g', '-fwrapv', '-O3', '-Os', '-isysroot/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk', '-lpython3.8', '-I/opt/local/Library/Frameworks/Python.framework/Versions/3.8/include/python3.8', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DPYTHONDIR="/usr/local/lib/python3.8/site-packages"', '-DPYTHONARCHDIR="/usr/local/lib/python3.8/site-packages"', '-DNDEBUG', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_b367436918f7cae05acae23362c521b8/testbuild/test.cpp.1.o']
-err: clang: warning: -lpython3.8: 'linker' input unused [-Wunused-command-line-argument]
-
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-fno-common', '-dynamic', '-g', '-fwrapv', '-O3', '-Os', '-I/opt/local/Library/Frameworks/Python.framework/Versions/3.8/include/python3.8', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DPYTHONDIR="/usr/local/lib/python3.8/site-packages"', '-DPYTHONARCHDIR="/usr/local/lib/python3.8/site-packages"', '-DNDEBUG', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_b367436918f7cae05acae23362c521b8/testbuild/test.cpp.1.o']
 [2/2] Linking [33mbuild/.conf_check_b367436918f7cae05acae23362c521b8/testbuild/testprog[0m
 
-['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_b367436918f7cae05acae23362c521b8/testbuild/testprog', '-framework', 'CoreFoundation', '-L/opt/local/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/config-3.8-darwin', '-ldl', '-lpython3.8', '-ldl']
+['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_b367436918f7cae05acae23362c521b8/testbuild/testprog', '-framework', 'CoreFoundation', '-L/opt/local/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/config-3.8-darwin', '-lpython3.8', '-ldl', '-lpython3.8', '-ldl']
 yes
 --------------------------------------------------------------------------
 Asking python-config for pyext '--cflags --libs --ldflags' flags
 ['/opt/local/bin/python3.8-config', '--cflags', '--libs', '--ldflags']
-out: -I/opt/local/Library/Frameworks/Python.framework/Versions/3.8/include/python3.8 -I/opt/local/Library/Frameworks/Python.framework/Versions/3.8/include/python3.8 -Wno-unused-result -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -pipe -Os -isysroot/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk
+out: -I/opt/local/Library/Frameworks/Python.framework/Versions/3.8/include/python3.8 -I/opt/local/Library/Frameworks/Python.framework/Versions/3.8/include/python3.8 -Wno-unused-result -Wsign-compare -Wunreachable-code -fno-common -dynamic -DNDEBUG -g -fwrapv -O3 -Wall -pipe -Os
 -ldl -framework CoreFoundation
 -L/opt/local/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/config-3.8-darwin -ldl -framework CoreFoundation
 
@@ -930,12 +928,10 @@ int main(int argc, char **argv)
 <==
 [1/2] Compiling [32mbuild/.conf_check_66b724fcf417dea0fd77d12e509b70c6/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-fPIC', '-fno-common', '-dynamic', '-g', '-fwrapv', '-O3', '-Os', '-isysroot/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk', '-ldl', '-fPIC', '-I/opt/local/Library/Frameworks/Python.framework/Versions/3.8/include/python3.8', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DPYTHONDIR="/usr/local/lib/python3.8/site-packages"', '-DPYTHONARCHDIR="/usr/local/lib/python3.8/site-packages"', '-DHAVE_PYEMBED=1', '-DNDEBUG', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_66b724fcf417dea0fd77d12e509b70c6/testbuild/test.cpp.1.o']
-err: clang: warning: -ldl: 'linker' input unused [-Wunused-command-line-argument]
-
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-fPIC', '-fno-common', '-dynamic', '-g', '-fwrapv', '-O3', '-Os', '-fPIC', '-I/opt/local/Library/Frameworks/Python.framework/Versions/3.8/include/python3.8', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DPYTHONDIR="/usr/local/lib/python3.8/site-packages"', '-DPYTHONARCHDIR="/usr/local/lib/python3.8/site-packages"', '-DHAVE_PYEMBED=1', '-DNDEBUG', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_66b724fcf417dea0fd77d12e509b70c6/testbuild/test.cpp.1.o']
 [2/2] Linking [33mbuild/.conf_check_66b724fcf417dea0fd77d12e509b70c6/testbuild/testprog.cpython-38-darwin.so[0m
 
-['/usr/bin/clang++', '-bundle', '-undefined', 'dynamic_lookup', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_66b724fcf417dea0fd77d12e509b70c6/testbuild/testprog.cpython-38-darwin.so', '-framework', 'CoreFoundation', '-L/opt/local/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/config-3.8-darwin', '-ldl']
+['/usr/bin/clang++', '-bundle', '-undefined', 'dynamic_lookup', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_66b724fcf417dea0fd77d12e509b70c6/testbuild/testprog.cpython-38-darwin.so', '-framework', 'CoreFoundation', '-L/opt/local/Library/Frameworks/Python.framework/Versions/3.8/lib/python3.8/config-3.8-darwin', '-ldl', '-ldl']
 yes
 --------------------------------------------------------------------------
 Checking for compilation flag -Wno-array-bounds support
@@ -944,7 +940,7 @@ int main() { return 0; }
 <==
 [1/1] Compiling [32mbuild/.conf_check_040c0dd0eda912b8b29d7d1ce92ad6d6/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-Wno-array-bounds', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DPYTHONDIR="/usr/local/lib/python3.8/site-packages"', '-DPYTHONARCHDIR="/usr/local/lib/python3.8/site-packages"', '-DHAVE_PYEMBED=1', '-DHAVE_PYEXT=1', '-DHAVE_PYTHON_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_040c0dd0eda912b8b29d7d1ce92ad6d6/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-Wno-array-bounds', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DPYTHONDIR="/usr/local/lib/python3.8/site-packages"', '-DPYTHONARCHDIR="/usr/local/lib/python3.8/site-packages"', '-DHAVE_PYEMBED=1', '-DHAVE_PYEXT=1', '-DHAVE_PYTHON_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_040c0dd0eda912b8b29d7d1ce92ad6d6/testbuild/test.cpp.1.o']
 ok
 --------------------------------------------------------------------------
 Checking for pybindgen location
@@ -957,7 +953,7 @@ err: Traceback (most recent call last):
 ModuleNotFoundError: No module named 'pybindgen'
 
 not found
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/bindings/python: Could not find the python module 'pybindgen'
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/bindings/python: Could not find the python module 'pybindgen'
 --------------------------------------------------------------------------
 Checking for click location
 not found
@@ -974,7 +970,7 @@ to the PKG_CONFIG_PATH environment variable
 No package 'gtk+-3.0' found
 
 not found
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/src/config-store: The configuration failed
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/src/config-store: The configuration failed
 --------------------------------------------------------------------------
 Checking for 'libxml-2.0 >= 2.7'
 ['/usr/local/bin/pkg-config', '--cflags', '--libs', 'libxml-2.0', '>=', '2.7']
@@ -997,7 +993,7 @@ checking for uint128_t
 <==
 [1/2] Compiling [32mbuild/.conf_check_2f39551c44a4e78a2e4469b1bac2d149/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_2f39551c44a4e78a2e4469b1bac2d149/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_2f39551c44a4e78a2e4469b1bac2d149/testbuild/test.cpp.1.o']
 err: ../test.cpp:6:7: error: use of undeclared identifier 'uint128_t'
         if ((uint128_t *) 0) return 0;
              ^
@@ -1009,16 +1005,16 @@ err: ../test.cpp:6:7: error: use of undeclared identifier 'uint128_t'
                     ^
 3 errors generated.
 
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/src/core: Test does not build: Traceback (most recent call last):
-  File "/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Configure.py", line 335, in run_build
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/src/core: Test does not build: Traceback (most recent call last):
+  File "/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Configure.py", line 335, in run_build
     bld.compile()
-  File "/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Build.py", line 176, in compile
+  File "/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Build.py", line 176, in compile
     raise Errors.BuildError(self.producer.error)
 waflib.Errors.BuildError: Build failed
  -> task in 'testprog' failed with exit status 1 (run with -v to display more information)
 
 not found
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/src/core: The configuration failed
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/src/core: The configuration failed
 --------------------------------------------------------------------------
 checking for __uint128_t
 ==>
@@ -1035,10 +1031,10 @@ checking for __uint128_t
 <==
 [1/2] Compiling [32mbuild/.conf_check_9858f12ee3e8fd10ddbed7322e7f6d39/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_9858f12ee3e8fd10ddbed7322e7f6d39/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_9858f12ee3e8fd10ddbed7322e7f6d39/testbuild/test.cpp.1.o']
 [2/2] Linking [33mbuild/.conf_check_9858f12ee3e8fd10ddbed7322e7f6d39/testbuild/testprog[0m
 
-['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_9858f12ee3e8fd10ddbed7322e7f6d39/testbuild/testprog']
+['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_9858f12ee3e8fd10ddbed7322e7f6d39/testbuild/testprog']
 yes
 --------------------------------------------------------------------------
 Checking high precision implementation
@@ -1056,10 +1052,10 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_78f27eb1cb7d718aa77ac6221c1170cb/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_78f27eb1cb7d718aa77ac6221c1170cb/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_78f27eb1cb7d718aa77ac6221c1170cb/testbuild/test.cpp.1.o']
 [2/2] Linking [33mbuild/.conf_check_78f27eb1cb7d718aa77ac6221c1170cb/testbuild/testprog[0m
 
-['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_78f27eb1cb7d718aa77ac6221c1170cb/testbuild/testprog']
+['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_78f27eb1cb7d718aa77ac6221c1170cb/testbuild/testprog']
 yes
 --------------------------------------------------------------------------
 Checking for header inttypes.h
@@ -1074,10 +1070,10 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_fc28ad0b265dbc0ea499b0019a3e29a9/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_STDINT_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_fc28ad0b265dbc0ea499b0019a3e29a9/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_STDINT_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_fc28ad0b265dbc0ea499b0019a3e29a9/testbuild/test.cpp.1.o']
 [2/2] Linking [33mbuild/.conf_check_fc28ad0b265dbc0ea499b0019a3e29a9/testbuild/testprog[0m
 
-['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_fc28ad0b265dbc0ea499b0019a3e29a9/testbuild/testprog']
+['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_fc28ad0b265dbc0ea499b0019a3e29a9/testbuild/testprog']
 yes
 --------------------------------------------------------------------------
 Checking for header sys/inttypes.h
@@ -1092,22 +1088,22 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_be8f82a542d6af9f438e0ae24dca5ce1/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_STDINT_H=1', '-DHAVE_INTTYPES_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_be8f82a542d6af9f438e0ae24dca5ce1/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_STDINT_H=1', '-DHAVE_INTTYPES_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_be8f82a542d6af9f438e0ae24dca5ce1/testbuild/test.cpp.1.o']
 err: ../test.cpp:1:10: fatal error: 'sys/inttypes.h' file not found
 #include <sys/inttypes.h>
          ^~~~~~~~~~~~~~~~
 1 error generated.
 
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/src/core: Test does not build: Traceback (most recent call last):
-  File "/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Configure.py", line 335, in run_build
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/src/core: Test does not build: Traceback (most recent call last):
+  File "/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Configure.py", line 335, in run_build
     bld.compile()
-  File "/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Build.py", line 176, in compile
+  File "/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Build.py", line 176, in compile
     raise Errors.BuildError(self.producer.error)
 waflib.Errors.BuildError: Build failed
  -> task in 'testprog' failed with exit status 1 (run with -v to display more information)
 
 not found
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/src/core: The configuration failed
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/src/core: The configuration failed
 --------------------------------------------------------------------------
 Checking for header sys/types.h
 ==>
@@ -1121,10 +1117,10 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_8921d893cae40686018a1a0f274b919a/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_STDINT_H=1', '-DHAVE_INTTYPES_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_8921d893cae40686018a1a0f274b919a/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_STDINT_H=1', '-DHAVE_INTTYPES_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_8921d893cae40686018a1a0f274b919a/testbuild/test.cpp.1.o']
 [2/2] Linking [33mbuild/.conf_check_8921d893cae40686018a1a0f274b919a/testbuild/testprog[0m
 
-['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_8921d893cae40686018a1a0f274b919a/testbuild/testprog']
+['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_8921d893cae40686018a1a0f274b919a/testbuild/testprog']
 yes
 --------------------------------------------------------------------------
 Checking for header sys/stat.h
@@ -1139,10 +1135,10 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_35c3b87a09b47b232105a7d7cd0283a2/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_STDINT_H=1', '-DHAVE_INTTYPES_H=1', '-DHAVE_SYS_TYPES_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_35c3b87a09b47b232105a7d7cd0283a2/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_STDINT_H=1', '-DHAVE_INTTYPES_H=1', '-DHAVE_SYS_TYPES_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_35c3b87a09b47b232105a7d7cd0283a2/testbuild/test.cpp.1.o']
 [2/2] Linking [33mbuild/.conf_check_35c3b87a09b47b232105a7d7cd0283a2/testbuild/testprog[0m
 
-['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_35c3b87a09b47b232105a7d7cd0283a2/testbuild/testprog']
+['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_35c3b87a09b47b232105a7d7cd0283a2/testbuild/testprog']
 yes
 --------------------------------------------------------------------------
 Checking for header dirent.h
@@ -1157,10 +1153,10 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_42a2d945c05247460c5b0f87cb6870b7/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_STDINT_H=1', '-DHAVE_INTTYPES_H=1', '-DHAVE_SYS_TYPES_H=1', '-DHAVE_SYS_STAT_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_42a2d945c05247460c5b0f87cb6870b7/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_STDINT_H=1', '-DHAVE_INTTYPES_H=1', '-DHAVE_SYS_TYPES_H=1', '-DHAVE_SYS_STAT_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_42a2d945c05247460c5b0f87cb6870b7/testbuild/test.cpp.1.o']
 [2/2] Linking [33mbuild/.conf_check_42a2d945c05247460c5b0f87cb6870b7/testbuild/testprog[0m
 
-['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_42a2d945c05247460c5b0f87cb6870b7/testbuild/testprog']
+['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_42a2d945c05247460c5b0f87cb6870b7/testbuild/testprog']
 yes
 --------------------------------------------------------------------------
 Checking for header signal.h
@@ -1175,10 +1171,10 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_4ecf044f3ad7de926ece45637d37a7c2/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_STDINT_H=1', '-DHAVE_INTTYPES_H=1', '-DHAVE_SYS_TYPES_H=1', '-DHAVE_SYS_STAT_H=1', '-DHAVE_DIRENT_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_4ecf044f3ad7de926ece45637d37a7c2/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_STDINT_H=1', '-DHAVE_INTTYPES_H=1', '-DHAVE_SYS_TYPES_H=1', '-DHAVE_SYS_STAT_H=1', '-DHAVE_DIRENT_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_4ecf044f3ad7de926ece45637d37a7c2/testbuild/test.cpp.1.o']
 [2/2] Linking [33mbuild/.conf_check_4ecf044f3ad7de926ece45637d37a7c2/testbuild/testprog[0m
 
-['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_4ecf044f3ad7de926ece45637d37a7c2/testbuild/testprog']
+['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_4ecf044f3ad7de926ece45637d37a7c2/testbuild/testprog']
 yes
 --------------------------------------------------------------------------
 Checking for header pthread.h
@@ -1195,10 +1191,10 @@ int main ()
 <==
 [1/2] Compiling [32mbuild/.conf_check_540e61053391cd4cb697e5746d5ea1e2/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_STDINT_H=1', '-DHAVE_INTTYPES_H=1', '-DHAVE_SYS_TYPES_H=1', '-DHAVE_SYS_STAT_H=1', '-DHAVE_DIRENT_H=1', '-DHAVE_SIGNAL_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_540e61053391cd4cb697e5746d5ea1e2/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_STDINT_H=1', '-DHAVE_INTTYPES_H=1', '-DHAVE_SYS_TYPES_H=1', '-DHAVE_SYS_STAT_H=1', '-DHAVE_DIRENT_H=1', '-DHAVE_SIGNAL_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_540e61053391cd4cb697e5746d5ea1e2/testbuild/test.cpp.1.o']
 [2/2] Linking [33mbuild/.conf_check_540e61053391cd4cb697e5746d5ea1e2/testbuild/testprog[0m
 
-['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_540e61053391cd4cb697e5746d5ea1e2/testbuild/testprog']
+['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_540e61053391cd4cb697e5746d5ea1e2/testbuild/testprog']
 yes
 --------------------------------------------------------------------------
 Checking for header stdint.h
@@ -1213,10 +1209,10 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_78f27eb1cb7d718aa77ac6221c1170cb/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_INTTYPES_H=1', '-DHAVE_SYS_TYPES_H=1', '-DHAVE_SYS_STAT_H=1', '-DHAVE_DIRENT_H=1', '-DHAVE_SIGNAL_H=1', '-DHAVE_PTHREAD_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_78f27eb1cb7d718aa77ac6221c1170cb/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_INTTYPES_H=1', '-DHAVE_SYS_TYPES_H=1', '-DHAVE_SYS_STAT_H=1', '-DHAVE_DIRENT_H=1', '-DHAVE_SIGNAL_H=1', '-DHAVE_PTHREAD_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_78f27eb1cb7d718aa77ac6221c1170cb/testbuild/test.cpp.1.o']
 [2/2] Linking [33mbuild/.conf_check_78f27eb1cb7d718aa77ac6221c1170cb/testbuild/testprog[0m
 
-['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_78f27eb1cb7d718aa77ac6221c1170cb/testbuild/testprog']
+['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_78f27eb1cb7d718aa77ac6221c1170cb/testbuild/testprog']
 yes
 --------------------------------------------------------------------------
 Checking for header inttypes.h
@@ -1231,10 +1227,10 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_fc28ad0b265dbc0ea499b0019a3e29a9/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_SYS_TYPES_H=1', '-DHAVE_SYS_STAT_H=1', '-DHAVE_DIRENT_H=1', '-DHAVE_SIGNAL_H=1', '-DHAVE_PTHREAD_H=1', '-DHAVE_STDINT_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_fc28ad0b265dbc0ea499b0019a3e29a9/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_SYS_TYPES_H=1', '-DHAVE_SYS_STAT_H=1', '-DHAVE_DIRENT_H=1', '-DHAVE_SIGNAL_H=1', '-DHAVE_PTHREAD_H=1', '-DHAVE_STDINT_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_fc28ad0b265dbc0ea499b0019a3e29a9/testbuild/test.cpp.1.o']
 [2/2] Linking [33mbuild/.conf_check_fc28ad0b265dbc0ea499b0019a3e29a9/testbuild/testprog[0m
 
-['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_fc28ad0b265dbc0ea499b0019a3e29a9/testbuild/testprog']
+['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_fc28ad0b265dbc0ea499b0019a3e29a9/testbuild/testprog']
 yes
 --------------------------------------------------------------------------
 Checking for header sys/inttypes.h
@@ -1249,22 +1245,22 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_be8f82a542d6af9f438e0ae24dca5ce1/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_SYS_TYPES_H=1', '-DHAVE_SYS_STAT_H=1', '-DHAVE_DIRENT_H=1', '-DHAVE_SIGNAL_H=1', '-DHAVE_PTHREAD_H=1', '-DHAVE_STDINT_H=1', '-DHAVE_INTTYPES_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_be8f82a542d6af9f438e0ae24dca5ce1/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_SYS_TYPES_H=1', '-DHAVE_SYS_STAT_H=1', '-DHAVE_DIRENT_H=1', '-DHAVE_SIGNAL_H=1', '-DHAVE_PTHREAD_H=1', '-DHAVE_STDINT_H=1', '-DHAVE_INTTYPES_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_be8f82a542d6af9f438e0ae24dca5ce1/testbuild/test.cpp.1.o']
 err: ../test.cpp:1:10: fatal error: 'sys/inttypes.h' file not found
 #include <sys/inttypes.h>
          ^~~~~~~~~~~~~~~~
 1 error generated.
 
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/src/core: Test does not build: Traceback (most recent call last):
-  File "/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Configure.py", line 335, in run_build
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/src/core: Test does not build: Traceback (most recent call last):
+  File "/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Configure.py", line 335, in run_build
     bld.compile()
-  File "/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Build.py", line 176, in compile
+  File "/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Build.py", line 176, in compile
     raise Errors.BuildError(self.producer.error)
 waflib.Errors.BuildError: Build failed
  -> task in 'testprog' failed with exit status 1 (run with -v to display more information)
 
 not found
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/src/core: The configuration failed
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/src/core: The configuration failed
 --------------------------------------------------------------------------
 Checking for library rt
 ==>
@@ -1277,23 +1273,23 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_2b334598ad55df9c966dac32c87d3c5d/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_SYS_TYPES_H=1', '-DHAVE_SYS_STAT_H=1', '-DHAVE_DIRENT_H=1', '-DHAVE_SIGNAL_H=1', '-DHAVE_PTHREAD_H=1', '-DHAVE_STDINT_H=1', '-DHAVE_INTTYPES_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_2b334598ad55df9c966dac32c87d3c5d/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE___UINT128_T=1', '-DINT64X64_USE_128=1', '-DHAVE_SYS_TYPES_H=1', '-DHAVE_SYS_STAT_H=1', '-DHAVE_DIRENT_H=1', '-DHAVE_SIGNAL_H=1', '-DHAVE_PTHREAD_H=1', '-DHAVE_STDINT_H=1', '-DHAVE_INTTYPES_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_2b334598ad55df9c966dac32c87d3c5d/testbuild/test.cpp.1.o']
 [2/2] Linking [33mbuild/.conf_check_2b334598ad55df9c966dac32c87d3c5d/testbuild/testprog[0m
 
-['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_2b334598ad55df9c966dac32c87d3c5d/testbuild/testprog', '-lrt']
+['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_2b334598ad55df9c966dac32c87d3c5d/testbuild/testprog', '-lrt']
 err: ld: library not found for -lrt
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/src/core: Test does not build: Traceback (most recent call last):
-  File "/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Configure.py", line 335, in run_build
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/src/core: Test does not build: Traceback (most recent call last):
+  File "/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Configure.py", line 335, in run_build
     bld.compile()
-  File "/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Build.py", line 176, in compile
+  File "/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Build.py", line 176, in compile
     raise Errors.BuildError(self.producer.error)
 waflib.Errors.BuildError: Build failed
  -> task in 'testprog' failed with exit status 1 (run with -v to display more information)
 
 not found
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/src/core: The configuration failed
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/src/core: The configuration failed
 --------------------------------------------------------------------------
 Checking for header sys/ioctl.h
 ==>
@@ -1307,10 +1303,10 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_72d93051ebaa6b5f9d463e7096461b0c/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_72d93051ebaa6b5f9d463e7096461b0c/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_72d93051ebaa6b5f9d463e7096461b0c/testbuild/test.cpp.1.o']
 [2/2] Linking [33mbuild/.conf_check_72d93051ebaa6b5f9d463e7096461b0c/testbuild/testprog[0m
 
-['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_72d93051ebaa6b5f9d463e7096461b0c/testbuild/testprog']
+['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_72d93051ebaa6b5f9d463e7096461b0c/testbuild/testprog']
 yes
 --------------------------------------------------------------------------
 Checking for header net/if.h
@@ -1325,10 +1321,10 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_10ae9c9b4244c33b19dacb103f33468c/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE_SYS_IOCTL_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_10ae9c9b4244c33b19dacb103f33468c/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE_SYS_IOCTL_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_10ae9c9b4244c33b19dacb103f33468c/testbuild/test.cpp.1.o']
 [2/2] Linking [33mbuild/.conf_check_10ae9c9b4244c33b19dacb103f33468c/testbuild/testprog[0m
 
-['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_10ae9c9b4244c33b19dacb103f33468c/testbuild/testprog']
+['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_10ae9c9b4244c33b19dacb103f33468c/testbuild/testprog']
 yes
 --------------------------------------------------------------------------
 Checking for header net/ethernet.h
@@ -1343,10 +1339,10 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_02eff9a880d4ef695f1f39407f17941c/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE_SYS_IOCTL_H=1', '-DHAVE_IF_NETS_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_02eff9a880d4ef695f1f39407f17941c/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE_SYS_IOCTL_H=1', '-DHAVE_IF_NETS_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_02eff9a880d4ef695f1f39407f17941c/testbuild/test.cpp.1.o']
 [2/2] Linking [33mbuild/.conf_check_02eff9a880d4ef695f1f39407f17941c/testbuild/testprog[0m
 
-['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_02eff9a880d4ef695f1f39407f17941c/testbuild/testprog']
+['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_02eff9a880d4ef695f1f39407f17941c/testbuild/testprog']
 yes
 --------------------------------------------------------------------------
 Checking for 'libdpdk'
@@ -1357,7 +1353,7 @@ to the PKG_CONFIG_PATH environment variable
 No package 'libdpdk' found
 
 not found
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/src/fd-net-device: The configuration failed
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/src/fd-net-device: The configuration failed
 --------------------------------------------------------------------------
 Checking for header linux/if_tun.h
 ==>
@@ -1371,22 +1367,22 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_84bde5bf7ffe777dad5df813b93837c2/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE_SYS_IOCTL_H=1', '-DHAVE_IF_NETS_H=1', '-DHAVE_NET_ETHERNET_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_84bde5bf7ffe777dad5df813b93837c2/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE_SYS_IOCTL_H=1', '-DHAVE_IF_NETS_H=1', '-DHAVE_NET_ETHERNET_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_84bde5bf7ffe777dad5df813b93837c2/testbuild/test.cpp.1.o']
 err: ../test.cpp:1:10: fatal error: 'linux/if_tun.h' file not found
 #include <linux/if_tun.h>
          ^~~~~~~~~~~~~~~~
 1 error generated.
 
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/src/fd-net-device: Test does not build: Traceback (most recent call last):
-  File "/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Configure.py", line 335, in run_build
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/src/fd-net-device: Test does not build: Traceback (most recent call last):
+  File "/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Configure.py", line 335, in run_build
     bld.compile()
-  File "/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Build.py", line 176, in compile
+  File "/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Build.py", line 176, in compile
     raise Errors.BuildError(self.producer.error)
 waflib.Errors.BuildError: Build failed
  -> task in 'testprog' failed with exit status 1 (run with -v to display more information)
 
 not found
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/src/fd-net-device: The configuration failed
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/src/fd-net-device: The configuration failed
 --------------------------------------------------------------------------
 Checking for header netpacket/packet.h
 ==>
@@ -1400,22 +1396,22 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_b65f599c2de3a80c907eb8b7100968be/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE_SYS_IOCTL_H=1', '-DHAVE_IF_NETS_H=1', '-DHAVE_NET_ETHERNET_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_b65f599c2de3a80c907eb8b7100968be/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE_SYS_IOCTL_H=1', '-DHAVE_IF_NETS_H=1', '-DHAVE_NET_ETHERNET_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_b65f599c2de3a80c907eb8b7100968be/testbuild/test.cpp.1.o']
 err: ../test.cpp:1:10: fatal error: 'netpacket/packet.h' file not found
 #include <netpacket/packet.h>
          ^~~~~~~~~~~~~~~~~~~~
 1 error generated.
 
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/src/fd-net-device: Test does not build: Traceback (most recent call last):
-  File "/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Configure.py", line 335, in run_build
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/src/fd-net-device: Test does not build: Traceback (most recent call last):
+  File "/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Configure.py", line 335, in run_build
     bld.compile()
-  File "/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Build.py", line 176, in compile
+  File "/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Build.py", line 176, in compile
     raise Errors.BuildError(self.producer.error)
 waflib.Errors.BuildError: Build failed
  -> task in 'testprog' failed with exit status 1 (run with -v to display more information)
 
 not found
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/src/fd-net-device: The configuration failed
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/src/fd-net-device: The configuration failed
 --------------------------------------------------------------------------
 Checking for header net/netmap_user.h
 ==>
@@ -1429,22 +1425,22 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_e9d03684062581acb00eba710bb5272f/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE_SYS_IOCTL_H=1', '-DHAVE_IF_NETS_H=1', '-DHAVE_NET_ETHERNET_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_e9d03684062581acb00eba710bb5272f/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE_SYS_IOCTL_H=1', '-DHAVE_IF_NETS_H=1', '-DHAVE_NET_ETHERNET_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_e9d03684062581acb00eba710bb5272f/testbuild/test.cpp.1.o']
 err: ../test.cpp:1:10: fatal error: 'net/netmap_user.h' file not found
 #include <net/netmap_user.h>
          ^~~~~~~~~~~~~~~~~~~
 1 error generated.
 
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/src/fd-net-device: Test does not build: Traceback (most recent call last):
-  File "/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Configure.py", line 335, in run_build
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/src/fd-net-device: Test does not build: Traceback (most recent call last):
+  File "/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Configure.py", line 335, in run_build
     bld.compile()
-  File "/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Build.py", line 176, in compile
+  File "/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Build.py", line 176, in compile
     raise Errors.BuildError(self.producer.error)
 waflib.Errors.BuildError: Build failed
  -> task in 'testprog' failed with exit status 1 (run with -v to display more information)
 
 not found
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/src/fd-net-device: The configuration failed
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/src/fd-net-device: The configuration failed
 --------------------------------------------------------------------------
 Checking for NSC location
 not found
@@ -1467,10 +1463,10 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_c37efbb515ef25356eb075829fe2daf9/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE_SYS_IOCTL_H=1', '-DHAVE_IF_NETS_H=1', '-DHAVE_NET_ETHERNET_H=1', '-DHAVE_SQLITE3=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_c37efbb515ef25356eb075829fe2daf9/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE_SYS_IOCTL_H=1', '-DHAVE_IF_NETS_H=1', '-DHAVE_NET_ETHERNET_H=1', '-DHAVE_SQLITE3=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_c37efbb515ef25356eb075829fe2daf9/testbuild/test.cpp.1.o']
 [2/2] Linking [33mbuild/.conf_check_c37efbb515ef25356eb075829fe2daf9/testbuild/testprog[0m
 
-['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_c37efbb515ef25356eb075829fe2daf9/testbuild/testprog']
+['/usr/bin/clang++', 'test.cpp.1.o', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_c37efbb515ef25356eb075829fe2daf9/testbuild/testprog']
 yes
 --------------------------------------------------------------------------
 Checking for header linux/if_tun.h
@@ -1485,22 +1481,22 @@ int main(int argc, char **argv) {
 <==
 [1/2] Compiling [32mbuild/.conf_check_84bde5bf7ffe777dad5df813b93837c2/test.cpp[0m
 
-['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE_SYS_IOCTL_H=1', '-DHAVE_IF_NETS_H=1', '-DHAVE_NET_ETHERNET_H=1', '-DHAVE_SQLITE3=1', '-DHAVE_SEMAPHORE_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/build/.conf_check_84bde5bf7ffe777dad5df813b93837c2/testbuild/test.cpp.1.o']
+['/usr/bin/clang++', '-O0', '-ggdb', '-g3', '-Wall', '-Wno-unused-local-typedefs', '-Wno-potentially-evaluated-expression', '-std=c++11', '-DNS3_BUILD_PROFILE_DEBUG', '-DNS3_ASSERT_ENABLE', '-DNS3_LOG_ENABLE', '-DHAVE_SYS_IOCTL_H=1', '-DHAVE_IF_NETS_H=1', '-DHAVE_NET_ETHERNET_H=1', '-DHAVE_SQLITE3=1', '-DHAVE_SEMAPHORE_H=1', '../test.cpp', '-c', '-o/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/build/.conf_check_84bde5bf7ffe777dad5df813b93837c2/testbuild/test.cpp.1.o']
 err: ../test.cpp:1:10: fatal error: 'linux/if_tun.h' file not found
 #include <linux/if_tun.h>
          ^~~~~~~~~~~~~~~~
 1 error generated.
 
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/src/tap-bridge: Test does not build: Traceback (most recent call last):
-  File "/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Configure.py", line 335, in run_build
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/src/tap-bridge: Test does not build: Traceback (most recent call last):
+  File "/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Configure.py", line 335, in run_build
     bld.compile()
-  File "/Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Build.py", line 176, in compile
+  File "/Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/.waf3-2.0.21-c6c9a875365426e5928462b9b74d40b5/waflib/Build.py", line 176, in compile
     raise Errors.BuildError(self.producer.error)
 waflib.Errors.BuildError: Build failed
  -> task in 'testprog' failed with exit status 1 (run with -v to display more information)
 
 not found
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33/src/tap-bridge: The configuration failed
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33/src/tap-bridge: The configuration failed
 --------------------------------------------------------------------------
 Checking for program 'sudo'
 /usr/bin/sudo
@@ -1509,7 +1505,7 @@ find program=['sudo'] paths=['/Users/samirsim/Desktop/Plateforme/LIP-master/plat
 Checking for program 'valgrind'
 not found
 find program=['valgrind'] paths=['/Users/samirsim/Desktop/Plateforme/LIP-master/platform-venv/bin', '/opt/local/bin', '/opt/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin', '/Library/TeX/texbin', '/Library/Apple/usr/bin', '/opt/local/bin', '/opt/local/sbin'] var='VALGRIND' -> None
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33: Could not find the program ['valgrind']
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33: Could not find the program ['valgrind']
 --------------------------------------------------------------------------
 Checking for 'gsl'
 ['/usr/local/bin/pkg-config', '--cflags', '--libs', 'gsl']
@@ -1519,14 +1515,14 @@ to the PKG_CONFIG_PATH environment variable
 No package 'gsl' found
 
 not found
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33: The configuration failed
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33: The configuration failed
 --------------------------------------------------------------------------
 libgcrypt-config
 not found
 find program=['libgcrypt-config'] paths=['/Users/samirsim/Desktop/Plateforme/LIP-master/platform-venv/bin', '/opt/local/bin', '/opt/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin', '/Library/TeX/texbin', '/Library/Apple/usr/bin', '/opt/local/bin', '/opt/local/sbin'] var='LIBGCRYPT_CONFIG' -> None
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33: Could not find the program ['libgcrypt-config']
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33: Could not find the program ['libgcrypt-config']
 --------------------------------------------------------------------------
 Checking for program 'doxygen'
 not found
 find program=['doxygen'] paths=['/Users/samirsim/Desktop/Plateforme/LIP-master/platform-venv/bin', '/opt/local/bin', '/opt/local/sbin', '/usr/local/bin', '/usr/bin', '/bin', '/usr/sbin', '/sbin', '/Library/TeX/texbin', '/Library/Apple/usr/bin', '/opt/local/bin', '/opt/local/sbin'] var='DOXYGEN' -> None
-from /Users/samirsim/Desktop/Plateforme/LIP-master/static/ns-3.33: Could not find the program ['doxygen']
+from /Users/samirsim/Desktop/Platform/NS3-Platform/code/static/ns-3.33: Could not find the program ['doxygen']

@@ -159,6 +159,7 @@ def index():
 
             #Copy all varaibles to environment varaibles to use in the shell script
             #principal variables for both Wi-Fi and LoRaWAN
+            os.environ['NETWORK']=session['network']
             os.environ['DISTANCE']=session['distance_devices_gateway'] 
             os.environ['SIMULATION_TIME']=session['simulation_time'] 
             os.environ['NUMDEVICES']=session['number_devices'] 
@@ -189,43 +190,51 @@ def index():
             os.environ['IMPLICITHEADER']=session['implicit_header_mode']
             os.environ['SF']=sf
             output="#"
+            latency="#"
             #Create class of a thread
             class myThread (threading.Thread):
-                def __init__(self, threadID, output) :
+                def __init__(self, threadID, output, latency) :
                     threading.Thread.__init__(self)
                     self.threadID = threadID
                     self.output = output
+                    self.latency = latency
                 def run(self):
                     print("Start Thread",self.threadID)
-                    self.output=simulationCall(self.threadID)
+                    self.output, self.latency=simulationCall(self.threadID)
                     print("Exit Thread",self.threadID)
             
             def simulationCall(threadID):
                 if threadID==1 :
                     if os.environ['TRAFFICPROF'] == "cbr":
-                        output = subprocess.check_output('cd static/ns-3.33; ./waf --run "scratch/script-cbr.cc --distance=$DISTANCE --simulationTime=$SIMULATION_TIME --nWifi=$NUMDEVICES --trafficDirection=$TRAFFICDIR --payloadSize=$PACKETSIZE --dataRate=$MEANLOAD --hiddenStations=$HIDDENDEVICES --MCS=$MCS --channelWidth=$BANDWIDTH --propDelay=$PROPDELAY --propLoss=$PROPLOSS --spatialStreams=$SPATIALSTREAMS --batteryCap=$BATTERYCAP --voltage=$VOLTAGE"', shell=True, text=True,stderr=subprocess.DEVNULL)
+                        if os.environ['NETWORK'] == "Wi-Fi 802.11ac":
+                            output = subprocess.check_output('cd static/ns-wifi; ./waf --run "scratch/script-cbr.cc --distance=$DISTANCE --simulationTime=$SIMULATION_TIME --nWifi=$NUMDEVICES --trafficDirection=$TRAFFICDIR --payloadSize=$PACKETSIZE --dataRate=$MEANLOAD --hiddenStations=$HIDDENDEVICES --MCS=$MCS --channelWidth=$BANDWIDTH --propDelay=$PROPDELAY --propLoss=$PROPLOSS --spatialStreams=$SPATIALSTREAMS --batteryCap=$BATTERYCAP --voltage=$VOLTAGE" 2> log.txt', shell=True, text=True,stderr=subprocess.DEVNULL)
                     elif os.environ['TRAFFICPROF'] == "vbr":
-                        output = subprocess.check_output('cd static/ns-3.33; ./waf --run "scratch/script-vbr.cc --distance=$DISTANCE --simulationTime=$SIMULATION_TIME --nWifi=$NUMDEVICES --trafficDirection=$TRAFFICDIR --fps=$FPS --hiddenStations=$HIDDENDEVICES --MCS=$MCS --channelWidth=$BANDWIDTH --propDelay=$PROPDELAY --propLoss=$PROPLOSS --spatialStreams=$SPATIALSTREAMS --batteryCap=$BATTERYCAP --voltage=$VOLTAGE"', shell=True, text=True,stderr=subprocess.DEVNULL)
+                        if os.environ['NETWORK'] == "Wi-Fi 802.11ac":
+                            output = subprocess.check_output('cd static/ns-wifi; ./waf --run "scratch/script-vbr.cc --distance=$DISTANCE --simulationTime=$SIMULATION_TIME --nWifi=$NUMDEVICES --trafficDirection=$TRAFFICDIR --fps=$FPS --hiddenStations=$HIDDENDEVICES --MCS=$MCS --channelWidth=$BANDWIDTH --propDelay=$PROPDELAY --propLoss=$PROPLOSS --spatialStreams=$SPATIALSTREAMS --batteryCap=$BATTERYCAP --voltage=$VOLTAGE" 2> log.txt', shell=True, text=True,stderr=subprocess.DEVNULL)
                     elif os.environ['TRAFFICPROF'] == "periodic":
-                        output = subprocess.check_output('cd static/ns-3.33; ./waf --run "scratch/script-periodic.cc --distance=$DISTANCE --simulationTime=$SIMULATION_TIME --nWifi=$NUMDEVICES --trafficDirection=$TRAFFICDIR --payloadSize=$PACKETSIZE --period=$LOADFREQ --hiddenStations=$HIDDENDEVICES --MCS=$MCS --channelWidth=$BANDWIDTH --propDelay=$PROPDELAY --propLoss=$PROPLOSS --spatialStreams=$SPATIALSTREAMS --batteryCap=$BATTERYCAP --voltage=$VOLTAGE"', shell=True, text=True,stderr=subprocess.DEVNULL)
+                        if os.environ['NETWORK'] == "Wi-Fi 802.11ac":
+                            output = subprocess.check_output('cd static/ns-wifi; ./waf --run "scratch/script-periodic.cc --distance=$DISTANCE --simulationTime=$SIMULATION_TIME --nWifi=$NUMDEVICES --trafficDirection=$TRAFFICDIR --payloadSize=$PACKETSIZE --period=$LOADFREQ --hiddenStations=$HIDDENDEVICES --MCS=$MCS --channelWidth=$BANDWIDTH --propDelay=$PROPDELAY --propLoss=$PROPLOSS --spatialStreams=$SPATIALSTREAMS --batteryCap=$BATTERYCAP --voltage=$VOLTAGE" 2> log.txt', shell=True, text=True,stderr=subprocess.DEVNULL)
                     
-                    #output = subprocess.check_output('cd static/ns-3.33;  ./waf --run "scratch/scratch-simulator.cc --distance=$DISTANCE"', shell=True, text=True, stderr=subprocess.DEVNULL)
-                    #res = os.system('cd static/ns-3.33;  ./waf --run "scratch/scratch-simulator.cc"')
+                    latency = subprocess.check_output('cd static/ns-wifi; cat "log.txt" | grep -e "client sent 1023 bytes" -e "server received 1023 bytes from" > "log-parsed.txt"; python3 get_latencies.py "log-parsed.txt"', shell=True, text=True,stderr=subprocess.DEVNULL)
+                    subprocess.check_output('cd static/ns-wifi; rm "log.txt"; rm "log-parsed.txt"', shell=True, text=True,stderr=subprocess.DEVNULL)
+                    
+                    #output = subprocess.check_output('cd static/ns-wifi;  ./waf --run "scratch/scratch-simulator.cc --distance=$DISTANCE"', shell=True, text=True, stderr=subprocess.DEVNULL)
+                    #res = os.system('cd static/ns-wifi;  ./waf --run "scratch/scratch-simulator.cc"')
                     #print(output)
                     print(output)
-                    return output
+                    return output, latency
             #Call NS-3 simulation by python shell script according network type
             #wifi ac  ./static/wifi-simulations-ns3-master/scratch/wifi-overload-throughput-ac.cc
             try:
                 model = ModelRecords()
                 if(network!='LoRaWAN') :
                     #Create a new thread to connect to the simulation NS-3
-                    thread1 = myThread(1,output)
+                    thread1 = myThread(1,output, latency)
                     #Start a thread
                     thread1.start()
                     #wait for all threads to finish
                     thread1.join()
-                    output = thread1.output
+                    output, latency = thread1.output, thread1.latency
                    # output = subprocess.run('cd ./static/wifi-simulations-ns3-master; ./waf --run "scratch/wifi-overload-throughput-ac.cc --distance=$DISTANCE --nWifi=$NUMDEVICES --trafficDirection=$TRAFFICDIR --trafficProfile=$TRAFFICPROF --payloadSize=$PACKETSIZE --loadFreq=$LOADFREQ --meanLoad=$MEANLOAD --hiddenDevices=$HIDDENDEVICES --mcs=$MCS --channelWidth=$BANDWIDTH --propDelay=$PROPDELAY --propLoss=$PROPLOSS --spatialStreams=$SPATIALSTREAMS --tx=$TX --rx=$RX --txFactor=$TXFACTOR --rxFactor=$RXFACTOR --voltage=$voltage --batteryCap=$BATTERYCAP"', shell=True, stdout=subprocess.PIPE, text=True)
                     lines = output.splitlines()
                     line = lines[0]
@@ -240,6 +249,7 @@ def index():
                    # print("output = ",output)
                     session['energy_consumption'] = energy
                     session['throughput'] = throughput
+                    session['latency'] = str(float(latency) * 1000) # To get in ms
                     session['success_rate'] = success_rate
                     session['battery_lifetime'] = battery_lifetime
                     #If a user has already login, save input parameters and results in JSON. 
@@ -268,7 +278,7 @@ def index():
 
                 jResults = {
                     "throughput": throughput,
-                    "latency": 1,
+                    "latency": str(float(latency) * 1000), # To get in ms
                     "success_rate": success_rate,
                     "energy_consumption": energy,
                     "battery_lifetime": batteryLife
@@ -323,4 +333,4 @@ def logout():
     return redirect(url_for('index'))
 
 if __name__ == "__main__" :
-    app.run(debug=True, reloader_interval=20)
+    app.run(debug=True, reloader_interval=999999)

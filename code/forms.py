@@ -29,7 +29,7 @@ class ScenarioForm(FlaskForm):
     fps = IntegerField('FPS, Frames per Second', validators=[DataRequired(), NumberRange(min=0, message='FPS must not be negative.')], default=30)
     num_devices = IntegerField('Number of end-devices', validators=[DataRequired(), NumberRange(min=1, message='A number of devices must not be negative.')]) 
     dist_devices_gateway = IntegerField('Distance end-devices-gateway, meter', validators=[DataRequired()])
-    simulation_time = IntegerField('Simulation time, seconds', validators=[DataRequired()])
+    simulation_time = IntegerField('Simulation time, seconds', validators=[DataRequired(), NumberRange(min=5, message='Time must be > 5s')])
     hidden_devices = RadioField('Hidden devices?', choices = [('1', 'Yes'), ('0', 'No')], default='0')
     sf = SelectField('Spreading factor (SF)',choices= choices_sf, default='0')
     change = BooleanField('Change advanced parameters', default=0)

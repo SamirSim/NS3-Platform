@@ -47,7 +47,7 @@ int main (int argc, char *argv[]) {
   SeedManager::SetRun (2);  // Changes run number from default of 1 to 7
   double simulationTime = 5; // Seconds
   uint32_t nWifi = 1; // Number of stations
-  uint32_t MCS = 9; // Number of stations
+  uint32_t MCS = 0; // Number of stations
   uint32_t txPower = 9; // Number of stations
   std::string trafficDirection = "upstream";
   uint32_t payloadSize = 1024; 
@@ -115,6 +115,11 @@ int main (int argc, char *argv[]) {
   LogComponentEnableAll (LOG_PREFIX_TIME);
 
   YansWifiChannelHelper channel = YansWifiChannelHelper::Default ();
+
+  //std::cout << propDelay << " " << propLoss << " " << distance << " " << MCS <<std::endl;
+
+  //channel.SetPropagationDelay ("ns3::"+propDelay);
+  //channel.AddPropagationLoss ("ns3::"+propLoss);
 
   NodeContainer wifiStaNodes;
   wifiStaNodes.Create (nWifi);

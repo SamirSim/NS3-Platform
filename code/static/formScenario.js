@@ -325,12 +325,14 @@ else
                 {                   
                    //set a default value to battery capacity depending on a network, here is wifi
                     battery_cap.value = "5200";
+                    voltage.value = "12";
                     packetSizeShow("Wi-Fi");        
                 }
                 else
                 {
                     //set a default value to battery capacity depending on a network, here is LoRaWAN
-                    battery_cap.value = "1000";       
+                    battery_cap.value = "2400";    
+                    voltage.value = "3";   
                     packetSizeShow("LoRaWAN");    
                                     
                 }
@@ -344,9 +346,9 @@ else
                         traffic_profile.selectedIndex = "1";    //set to Periodic
                         packet_size_wifi.value = "1024",             //set to 1024 bytes
                         load_freq.value = "1";                  //set to 1 packet/sec
-                        num_devices.value = "5";                //set to 20 devices
+                        num_devices.value = "1";                //set to 20 devices
                         dist_devices_gateway.value = "1";       //set distance to 1 meter
-                        simulation_time.value = "1";
+                        simulation_time.value = "5";
                         //The rest advanced parameter are set to default; listed in the documentation
                         //Set a picture to upstream direction
                         diagram.setAttribute('src', '../static/img/diagram_traffic_upstream.png');
@@ -359,10 +361,10 @@ else
                         traffic_profile.selectedIndex = "2";    //set to Stochastic
                         packet_size_wifi.value = "1024",             //set to 1024 bytes
                         mean_load.value = "2";                  //set to 2 Mbps
-                        num_devices.value = "5";                //set to 20 devices
+                        num_devices.value = "1";                //set to 20 devices
                         //fps.value = "30";                //FPS=30
                         dist_devices_gateway.value = "1";       //set distance to 1 meter
-                        simulation_time.value = "1";
+                        simulation_time.value = "5";
                         //The rest advanced parameter are set to default; listed in the documentation
                         diagram.setAttribute('src', '../static/img/diagram_traffic_upstream.png');
                         break;
@@ -373,9 +375,9 @@ else
                         traffic_profile.selectedIndex = "2";    //set to Stochastic
                         packet_size_wifi.value = "1024",             //set to 1024 bytes
                         mean_load.value = "2";                  //set to 2 Mbps
-                        num_devices.value = "5";               //set to 20 devices
+                        num_devices.value = "1";               //set to 20 devices
                         dist_devices_gateway.value = "1";       //set distance to 1 meter
-                        simulation_time.value = "1";
+                        simulation_time.value = "5";
                         //The rest advanced parameter are set to default; listed in the documentation
                         //Set the picture to downstream direction
                         diagram.setAttribute('src', '../static/img/diagram_traffic_downstream.png');
@@ -386,10 +388,10 @@ else
                         direction.selectedIndex = "1";          //set to Upstream
                         traffic_profile.selectedIndex = "1";    //set to Periodic
                         packet_size_lorawan.value = "23",               //set to 23 bytes
-                        load_freq.value = "0.000278";           //set to 0.000278 packet/sec or 1 packet/hr
-                        num_devices.value = "10000" ;           //set to 10000 devices
-                        dist_devices_gateway.value = "1000";    //set distance to 1 kmS
-                        simulation_time.value = "600";
+                        load_freq.value = "360";           //set to 3600 packet/sec or 1 packet/hr
+                        num_devices.value = "1" ;           //set to 1 devices
+                        dist_devices_gateway.value = "100";    //set distance to 100 m
+                        simulation_time.value = "3600";
                         sf.selectedIndex = "0";                 //set SF to 7
                         //The rest advanced parameter are set to default; listed in the documentation
                         diagram.setAttribute('src', '../static/img/diagram_traffic_upstream.png');
@@ -447,7 +449,8 @@ function onChangeSelectNetwork(){
        // num_devices.placeholder = "max 22"; 
         dist_devices_gateway.placeholder = "max 10";
         //set a default value to battery capacity depending on a network
-        battery_cap.value = "5200";  
+        battery_cap.value = "5200"; 
+        voltage.value = "12"; 
         packetSizeShow("Wi-Fi");
 
     }
@@ -460,7 +463,8 @@ function onChangeSelectNetwork(){
        // num_devices.placeholder = "max 70000";    
         dist_devices_gateway.placeholder = "max 8000";        
          //set a default value to battery capacity depending on a network
-         battery_cap.value = "1000";     
+         battery_cap.value = "1000"; 
+         voltage.value = "3";    
          packetSizeShow("LoRaWAN");     
     }
     else

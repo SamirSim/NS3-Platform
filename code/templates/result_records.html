@@ -272,7 +272,7 @@
                 </div>
                 <div class="col-5">
             {% if user_record['parameters']['network'] != 'LoRaWAN' %}             
-                    : {{ user_record['results']['battery_lifetime'] }} h
+                    : {{ user_record['results']['battery_lifetime'] }} days
             {% else %}        
                     : {{ user_record['results']['battery_lifetime'] }} year
             {% endif %}        

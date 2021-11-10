@@ -32,10 +32,10 @@ class ModelRecords:
                 },
                 "results": {
                                 "throughput": session['throughput'],
-                                "latency": 1,
+                                "latency": session['latency'],
                                 "success_rate": session['success_rate'],
-                                "energy_consumption": 6,
-                                "battery_lifetime": 24
+                                "energy_consumption": session['energy_consumption'],
+                                "battery_lifetime": session['battery_lifetime']
                 }
             }
         return post
@@ -68,10 +68,10 @@ class ModelRecords:
                 },
                 "results": {
                                 "throughput": session['throughput'],
-                                "latency": 1,
+                                "latency": session['latency'],
                                 "success_rate": session['success_rate'],
-                                "energy_consumption": 6,
-                                "battery_lifetime": 24
+                                "energy_consumption": session['energy_consumption'],
+                                "battery_lifetime": session['battery_lifetime']
                 }
         }    
         return post

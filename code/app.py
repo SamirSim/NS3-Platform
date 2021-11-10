@@ -43,27 +43,19 @@ def register():
     model = ModelUsers()
     if form.validate_on_submit():
         #check existing user
-        try:
-            print(users.find_one({"username":form.username.data}), form.username.data)
-        except Exception as e:
-            print(e)
         existing_user = users.find_one({"username":form.username.data})
-        print("here")
         existing_email = users.find_one({"email":form.email.data})
         print(existing_email, existing_user)
         #verify with existing usernames and emails in the mongoDB: users
         valid = True
         if existing_user != None:
-            print("here1")
             valid=False
             flash("This username has already existed.", "warning")  
 
         if existing_email != None:
-            print("here2")
             valid=False  
             flash("This email address has already existed.", "warning")   
         if valid:    
-            print("here3")
             hasspass = bcrypt.hashpw(form.password.data.encode('utf-8'), bcrypt.gensalt()) 
             session['hasspass'] = hasspass
             # users.insert({"username": form.username.data, "email": form.email.data, "password": hasspass})            
@@ -213,6 +205,7 @@ def index():
                             output = subprocess.check_output('cd static/ns-wifi; ./waf --run "scratch/script-vbr.cc --distance=$DISTANCE --simulationTime=$SIMULATION_TIME --nWifi=$NUMDEVICES --trafficDirection=$TRAFFICDIR --fps=$FPS --hiddenStations=$HIDDENDEVICES --MCS=$MCS --channelWidth=$BANDWIDTH --propDelay=$PROPDELAY --propLoss=$PROPLOSS --spatialStreams=$SPATIALSTREAMS --batteryCap=$BATTERYCAP --voltage=$VOLTAGE" 2> log.txt', shell=True, text=True,stderr=subprocess.DEVNULL)
                     elif os.environ['TRAFFICPROF'] == "periodic":
                         if os.environ['NETWORK'] == "Wi-Fi 802.11ac":
+                            #print(os.environ['MCS'])
                             output = subprocess.check_output('cd static/ns-wifi; ./waf --run "scratch/script-periodic.cc --distance=$DISTANCE --simulationTime=$SIMULATION_TIME --nWifi=$NUMDEVICES --trafficDirection=$TRAFFICDIR --payloadSize=$PACKETSIZE --period=$LOADFREQ --hiddenStations=$HIDDENDEVICES --MCS=$MCS --channelWidth=$BANDWIDTH --propDelay=$PROPDELAY --propLoss=$PROPLOSS --spatialStreams=$SPATIALSTREAMS --batteryCap=$BATTERYCAP --voltage=$VOLTAGE" 2> log.txt', shell=True, text=True,stderr=subprocess.DEVNULL)
                     
                     latency = subprocess.check_output('cd static/ns-wifi; cat "log.txt" | grep -e "client sent 1023 bytes" -e "server received 1023 bytes from" > "log-parsed.txt"; python3 get_latencies.py "log-parsed.txt"', shell=True, text=True,stderr=subprocess.DEVNULL)

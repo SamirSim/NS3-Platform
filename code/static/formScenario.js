@@ -504,10 +504,20 @@ function onChangeTrafficProfile(){
     switch(select_trafficProfile)
     {
         case 'periodic' :
-                load_freq.style.display = "inherit";
-                lbl_load_freq.style.display = "inherit";
+            if (network.value=="LoRaWAN") {
+                packet_size_wifi.style.display = "none";
+                lbl_packet_size_wifi.style.display = "none";
+                packet_size_lorawan.style.display = "inherit";
+                lbl_packet_size_lorawan.style.display = "inherit";
+            }
+            else {
                 packet_size_wifi.style.display = "inherit";
                 lbl_packet_size_wifi.style.display = "inherit";
+                packet_size_lorawan.style.display = "none";
+                lbl_packet_size_lorawan.style.display = "none";
+            }
+                load_freq.style.display = "inherit";
+                lbl_load_freq.style.display = "inherit";
                 mean_load.style.display = "none";
                 lbl_fps.style.display = "none";
                 fps.style.display = "none";
@@ -542,6 +552,4 @@ function onChangeTrafficProfile(){
                 lbl_mean_load.style.display = "none";
     }
 
-}
-
-  
+}  

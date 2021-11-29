@@ -25,4 +25,5 @@ with open(filepath) as fp:
 			 line1 = line2
 			 line2 = fp.readline()
 
-print (total/cpt)
+#print(total/cpt)
+print ("{:.5f}".format(total/cpt))

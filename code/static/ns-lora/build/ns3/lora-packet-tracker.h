@@ -147,7 +147,9 @@ public:
    * This returns a string containing the number of sent packets and the number
    * of packets that were received by at least one gateway.
    */
-  std::string CountMacPacketsGlobally (Time startTime, Time stopTime);
+  double CountMacPacketsGlobally (Time startTime, Time stopTime);
+
+  double CountMacPacketsReceived (Time startTime, Time stopTime);
 
   /**
    * Count packets to evaluate the global performance at MAC level of the whole

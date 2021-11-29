@@ -23,6 +23,7 @@
 #include "ns3/energy-module.h"
 #include "ns3/wifi-radio-energy-model-helper.h"
 #include "ns3/applications-module.h"
+#include <iomanip>
 
 using namespace ns3;
 
@@ -431,6 +432,9 @@ int main (int argc, char *argv[]) {
 
   Simulator::Stop (Seconds (simulationTime + 2));
   Simulator::Run ();
+
+  std::cout << std::fixed;
+  std::cout << std::setprecision(2);
   
   if (energyRatio || energyPower) {
     double energy = 0;

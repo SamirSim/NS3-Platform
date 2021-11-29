@@ -5,7 +5,7 @@ declare -a nSta=2 # Number of end-devices
 declare -a distance=100 # Meters from ED to GW
 
 declare -a energyRatio=1 # Energy Ratio consumption of one device in Joules/Byte
-declare -a successRate=1 # Packets (Layer 3) success rate percentage %
+declare -a successRate=0 # Packets (Layer 3) success rate percentage %
 declare -a batteryLife=0 # Battery Lifetime of one-device
 
 declare -a nbPackets=0 
@@ -24,7 +24,7 @@ do
     do
         for nSta in $(seq $1 $step $2)
         do 
-            ./waf --run "scratch/lora-telemetry.cc --simulationTime=$simulationTime --payloadSize=$payloadSize --period=$period --nSta=$nSta --distance=$distance --energyRatio=$energyRatio --successRate=$successRate --batteryLife=$batteryLife" 2> "${path}/$nSta-$period-$distance-$payloadSize-log.txt" > "${path}/$nSta-$period-$distance-$payloadSize-out.txt"
+            ./waf --run "scratch/script-periodic.cc --simulationTime=$simulationTime --payloadSize=$payloadSize --period=$period --nSta=$nSta --distance=$distance --energyRatio=$energyRatio --successRate=$successRate --batteryLife=$batteryLife" 2> "${path}/$nSta-$period-$distance-$payloadSize-log.txt" > "${path}/$nSta-$period-$distance-$payloadSize-out.txt"
             
             if [[ $successRate -eq 1 ]]
             then
@@ -43,7 +43,7 @@ do
                 echo $nSta $energyJoules $nbBytes $energyJoulesPerByte
             fi     
             #cat "${path}/$nSta-$period-$distance-$payloadSize-out.txt"
-            rm "${path}/$nSta-$period-$distance-$payloadSize-out.txt" "${path}/$nSta-$period-$distance-$payloadSize-log.txt"
+            #rm "${path}/$nSta-$period-$distance-$payloadSize-out.txt" "${path}/$nSta-$period-$distance-$payloadSize-log.txt"
         done
     done
 done

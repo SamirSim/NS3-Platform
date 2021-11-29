@@ -348,7 +348,7 @@ LoraPacketTracker::PrintPhyPacketsPerGw (Time startTime, Time stopTime,
   return output;
 }
 
-  std::string
+  double
   LoraPacketTracker::CountMacPacketsGlobally (Time startTime, Time stopTime)
   {
     NS_LOG_FUNCTION (this << startTime << stopTime);
@@ -368,9 +368,30 @@ LoraPacketTracker::PrintPhyPacketsPerGw (Time startTime, Time stopTime,
               }
           }
       }
+  
+      return (received/sent)*100;
+  }
 
-    return std::to_string (sent) + " " +
-      std::to_string (received);
+  double
+  LoraPacketTracker::CountMacPacketsReceived (Time startTime, Time stopTime)
+  {
+    NS_LOG_FUNCTION (this << startTime << stopTime);
+
+    double received = 0;
+    for (auto it = m_macPacketTracker.begin ();
+         it != m_macPacketTracker.end ();
+         ++it)
+      {
+        if ((*it).second.sendTime >= startTime && (*it).second.sendTime <= stopTime)
+          {
+            if ((*it).second.receptionTimes.size ())
+              {
+                received++;
+              }
+          }
+      }
+  
+      return received;
   }
 
   std::string

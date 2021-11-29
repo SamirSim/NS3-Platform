@@ -239,7 +239,11 @@
                    Total Throughput
                 </div>
                 <div class="col-5">
+            {% if session['network'] != 'LoRaWAN' %}             
                     : {{ jResults['throughput'] }} Mbps
+            {% else %}        
+                    : {{ jResults['throughput'] }} bps
+            {% endif %} 
                 </div>
             </div> 
             <div class="row mb-2">
@@ -274,7 +278,7 @@
             {% if session['network'] != 'LoRaWAN' %}             
                     : {{ jResults['battery_lifetime'] }} days
             {% else %}        
-                    : {{ jResults['battery_lifetime'] }} year
+                    : {{ jResults['battery_lifetime'] }} years
             {% endif %}        
                 </div>
             </div> 

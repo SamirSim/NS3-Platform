@@ -43,14 +43,6 @@ var lbl_bandwidth = document.getElementById("lbl_bandwidth");
 var bandwidth = document.getElementById("bandwidth");
 var lbl_spatial_streams = document.getElementById("lbl_spatial_streams");
 var spatial_streams = document.getElementById("spatial_streams");
-var lbl_tx = document.getElementById("lbl_tx");
-var tx = document.getElementById("tx");
-var lbl_rx = document.getElementById("lbl_rx");
-var rx = document.getElementById("rx");
-var lbl_tx_factor = document.getElementById("lbl_tx_factor");
-var tx_factor = document.getElementById("tx_factor");
-var lbl_rx_factor = document.getElementById("lbl_rx_factor");
-var rx_factor = document.getElementById("rx_factor");
 var lbl_voltage = document.getElementById("lbl_voltage");
 var voltage = document.getElementById("voltage");
 var lbl_battery_cap = document.getElementById("lbl_battery_cap");
@@ -80,14 +72,6 @@ lbl_bandwidth.style.display = "none";
 bandwidth.style.display = "none";
 lbl_spatial_streams.style.display = "none";
 spatial_streams.style.display = "none";
-lbl_tx.style.display = "none";
-tx.style.display = "none";
-lbl_rx.style.display = "none";
-rx.style.display = "none";
-lbl_tx_factor.style.display = "none";
-tx_factor.style.display = "none";
-lbl_rx_factor.style.display = "none";
-rx_factor.style.display = "none";
 lbl_voltage.style.display = "none";
 voltage.style.display = "none";
 lbl_battery_cap.style.display = "none";
@@ -124,14 +108,6 @@ function onCheck(){
         prop_loss.style.display = "inherit";
         lbl_bandwidth.style.display = "inherit";
         bandwidth.style.display = "inherit";
-        lbl_tx.style.display = "inherit";
-        tx.style.display = "inherit";
-        lbl_rx.style.display = "inherit";
-        rx.style.display = "inherit";
-        lbl_tx_factor.style.display = "inherit";
-        tx_factor.style.display = "inherit";
-        lbl_rx_factor.style.display = "inherit";
-        rx_factor.style.display = "inherit";
         lbl_voltage.style.display = "inherit";
         voltage.style.display = "inherit";
         lbl_battery_cap.style.display = "inherit";
@@ -181,14 +157,6 @@ function onCheck(){
         bandwidth.style.display = "none";
         lbl_spatial_streams.style.display = "none";
         spatial_streams.style.display = "none";
-        lbl_tx.style.display = "none";
-        tx.style.display = "none";
-        lbl_rx.style.display = "none";
-        rx.style.display = "none";
-        lbl_tx_factor.style.display = "none";
-        tx_factor.style.display = "none";
-        lbl_rx_factor.style.display = "none";
-        rx_factor.style.display = "none";
         lbl_voltage.style.display = "none";
         voltage.style.display = "none";
         lbl_battery_cap.style.display = "none";
@@ -351,7 +319,7 @@ else
                         simulation_time.value = "5";
                         //The rest advanced parameter are set to default; listed in the documentation
                         //Set a picture to upstream direction
-                        diagram.setAttribute('src', '../static/img/diagram_traffic_upstream.png');
+                        //diagram.setAttribute('src', '../static/img/diagram_traffic_upstream.png');
                         break;
                     case '2'://Video-surveillance 
                         network.selectedIndex = "1";             //set to Wi-Fi 5  
@@ -366,7 +334,7 @@ else
                         dist_devices_gateway.value = "1";       //set distance to 1 meter
                         simulation_time.value = "5";
                         //The rest advanced parameter are set to default; listed in the documentation
-                        diagram.setAttribute('src', '../static/img/diagram_traffic_upstream.png');
+                        //diagra.SetAttribute('src', '../static/img/diagram_traffic_upstream.png');
                         break;
                     case '3'://Webcast 
                         network.selectedIndex = "1";             //set to Wi-Fi 5 
@@ -380,7 +348,7 @@ else
                         simulation_time.value = "5";
                         //The rest advanced parameter are set to default; listed in the documentation
                         //Set the picture to downstream direction
-                        diagram.setAttribute('src', '../static/img/diagram_traffic_downstream.png');
+                        //diagra.SetAttribute('src', '../static/img/diagram_traffic_downstream.png');
                         break;
                     case '4'://smart metering
                         network.selectedIndex = "3";             //set to LoRaWAN
@@ -394,7 +362,7 @@ else
                         simulation_time.value = "3600";
                         sf.selectedIndex = "0";                 //set SF to 7
                         //The rest advanced parameter are set to default; listed in the documentation
-                        diagram.setAttribute('src', '../static/img/diagram_traffic_upstream.png');
+                        //diagra.SetAttribute('src', '../static/img/diagram_traffic_upstream.png');
                         break;
                 }   
                 //Set meanload or load freq according to traffic direction
@@ -471,7 +439,7 @@ function onChangeSelectNetwork(){
     {
         num_devices.placeholder ="";
         dist_devices_gateway.placeholder = "";
-        diagram.setAttribute('src', '../static/img/network-IOT_640.png');
+        //diagra.SetAttribute('src', '../static/img/network-IOT_640.png');
         packetSizeShow("");   
     }
     direction.innerHTML = optionDirection;
@@ -484,13 +452,13 @@ function onChangeSelectDirection(){
     switch(select_direction)
     {
         case 'upstream' :
-                diagram.setAttribute('src', '../static/img/diagram_traffic_upstream.png');
+                //diagra.SetAttribute('src', '../static/img/diagram_traffic_upstream.png');
                 break;
         case 'downstream' :
-                diagram.setAttribute('src', '../static/img/diagram_traffic_downstream.png');
+                //diagra.SetAttribute('src', '../static/img/diagram_traffic_downstream.png');
                 break;
         default :
-                diagram.setAttribute('src', '../static/img/network-IOT_640.png');
+                //diagra.SetAttribute('src', '../static/img/network-IOT_640.png');
     }        
 }  
 

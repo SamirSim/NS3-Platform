@@ -180,42 +180,10 @@
         {% endif %}    
             <div class="row mb-2">
                 <div class="col-7">
-                    Tx
-                </div>
-                <div class="col-5">
-                   : {{ user_record['parameters']['tx'] }} W
-                </div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-7">
-                    Rx
-                </div>
-                <div class="col-5">
-                   : {{ user_record['parameters']['rx'] }} W
-                </div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-7">
-                    Tx X-factor
-                </div>
-                <div class="col-5">
-                : {{ user_record['parameters']['tx_factor'] }} mJ
-                </div>
-            </div> 
-            <div class="row mb-2">
-                <div class="col-7">
-                    Rx X-factor
-                </div>
-                <div class="col-5">
-                : {{ user_record['parameters']['rx_factor'] }} mJ
-                </div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-7">
                     Voltage
                 </div>
                 <div class="col-5">
-                : {{ user_record['parameters']['voltage'] }} W
+                : {{ user_record['parameters']['voltage'] }} V
                 </div>
             </div>
             <div class="row mb-2">
@@ -236,15 +204,19 @@
             </div>
             <div class="row mb-2">
                 <div class="col-7">
-                   Total Throughput
+                   Packet throughput
                 </div>
                 <div class="col-5">
-                    : {{ user_record['results']['throughput'] }} Mbps
+                    {% if session['network'] != 'LoRaWAN' %}             
+                            : {{ user_record['results']['throughput'] }} Mbps
+                    {% else %}        
+                            : {{ user_record['results']['throughput'] }} bps
+                    {% endif %} 
                 </div>
             </div> 
             <div class="row mb-2">
                 <div class="col-7">
-                   Latency
+                   Packet latency
                 </div>
                 <div class="col-5">
                     : {{ user_record['results']['latency'] }} ms
@@ -252,7 +224,7 @@
             </div> 
             <div class="row mb-2">
                 <div class="col-7">
-                   Success rate
+                   Packet delivery
                 </div>
                 <div class="col-5">
                     : {{ user_record['results']['success_rate'] }} %

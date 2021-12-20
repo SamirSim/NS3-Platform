@@ -1,14 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" >
         <div class="col-sm-12 col-lg-4 align-self-center">
-            <img id="img_traffic" src="../static/img/network-IOT_640.png" alt="Network_IOT" style="max-width: 90%;">
+            <img id="img_traffic" src="../static/img/Topology.png" alt="Network_IOT" style="max-width: 90%;">
         </div>
         <form method= "POST" action="" class="col-sm-12 col-lg-7">
             {{ form.csrf_token }}
             <fieldset class="rounded-3 bg-light p-5">
                 <legend>SCENARIO</legend>
-                    <div class="mb-3">
+                    <div class="mb-3" >
                         <h4>To get started, you can select one of these presets then press the submit button.</h4>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="radioPreset" id="radioPreset1" value="1">
@@ -168,22 +168,6 @@
                      <div class="mb-3">
                         {{ form.spatial_streams.label(class="form-label", id="lbl_spatial_streams") }}
                         {{ form.spatial_streams(class="form-select",id="spatial_streams") }}
-                    </div>
-                    <div class="mb-3">
-                        {{ form.tx.label(class="form-label", id="lbl_tx") }}
-                        {{ form.tx(class="form-control",id="tx") }}
-                    </div>
-                    <div class="mb-3">
-                        {{ form.rx.label(class="form-label", id="lbl_rx") }}
-                        {{ form.rx(class="form-control",id="rx") }}
-                    </div>
-                    <div class="mb-3">
-                        {{ form.tx_factor.label(class="form-label", id="lbl_tx_factor") }}
-                        {{ form.tx_factor(class="form-control",id="tx_factor") }}
-                    </div>
-                    <div class="mb-3">
-                        {{ form.rx_factor.label(class="form-label", id="lbl_rx_factor") }}
-                        {{ form.rx_factor(class="form-control",id="rx_factor") }}
                     </div>
                     <div class="mb-3">
                         {{ form.voltage.label(class="form-label", id="lbl_voltage") }}

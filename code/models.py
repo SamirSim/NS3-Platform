@@ -6,7 +6,7 @@ from forms import RegisterForm
 class ModelRecords:
     def wifiPeriodicRec(self):
         post ={
-                "dateTime": datetime.datetime.now(),
+                "dateTime": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 "username": session['username'],
                 "parameters": {
                                 "network": session['network'],
@@ -42,7 +42,7 @@ class ModelRecords:
     
     def wifiStochasticRec(self):
         post ={
-                "dateTime": datetime.datetime.now(),
+                "dateTime": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 "username": session['username'],
                 "parameters": {
                                 "network": session['network'],
@@ -78,7 +78,7 @@ class ModelRecords:
 
     def lorawanRec(self):
         post ={
-                "dateTime": datetime.datetime.now(),
+                "dateTime": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 "username": session['username'],
                 "parameters": {
                                 "network": session['network'],
@@ -104,11 +104,11 @@ class ModelRecords:
                                 "battery_capacity": session['battery_capacity']
                 },
                 "results": {
-                                "throughput": throughput,
-                                "latency": 1,
-                                "success_rate": 90,
-                                "energy_consumption": 6,
-                                "battery_lifetime": 1
+                                "throughput": session['throughput'],
+                                "latency": session['latency'],
+                                "success_rate": session['success_rate'],
+                                "energy_consumption": session['energy_consumption'],
+                                "battery_lifetime": session['battery_lifetime']
                 }
         }    
         return post

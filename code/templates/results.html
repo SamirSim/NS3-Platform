@@ -180,38 +180,6 @@
         {% endif %}    
             <div class="row mb-2">
                 <div class="col-7">
-                    Tx
-                </div>
-                <div class="col-5">
-                   : {{ session['tx'] }} W
-                </div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-7">
-                    Rx
-                </div>
-                <div class="col-5">
-                   : {{ session['rx'] }} W
-                </div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-7">
-                    Tx X-factor
-                </div>
-                <div class="col-5">
-                : {{ session['tx_factor'] }} mJ
-                </div>
-            </div> 
-            <div class="row mb-2">
-                <div class="col-7">
-                    Rx X-factor
-                </div>
-                <div class="col-5">
-                : {{ session['rx_factor'] }} mJ
-                </div>
-            </div>
-            <div class="row mb-2">
-                <div class="col-7">
                     Voltage
                 </div>
                 <div class="col-5">
@@ -232,11 +200,11 @@
                 <h2>Simulation results</h2>
             </div>
             <div class="row text-primary mb-2">
-                <strong>Output parameters:</strong>
+                <strong>KPIs:</strong>
             </div>
             <div class="row mb-2">
                 <div class="col-7">
-                   Total Throughput
+                   Packet throughput
                 </div>
                 <div class="col-5">
             {% if session['network'] != 'LoRaWAN' %}             
@@ -248,7 +216,7 @@
             </div> 
             <div class="row mb-2">
                 <div class="col-7">
-                   Latency
+                   Packet latency
                 </div>
                 <div class="col-5">
                     : {{ jResults['latency'] }} ms
@@ -256,7 +224,7 @@
             </div> 
             <div class="row mb-2">
                 <div class="col-7">
-                   Success rate
+                   Packet delivery
                 </div>
                 <div class="col-5">
                     : {{ jResults['success_rate'] }} %

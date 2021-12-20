@@ -9,7 +9,9 @@ from pymongo import MongoClient
 from models import ModelUsers, ModelRecords 
 
 
-cluster = MongoClient("mongodb+srv://admin:KesummWHH5yr68c@cluster0.mi5o8.mongodb.net/web_simulation?retryWrites=true&w=majority")
+#cluster = MongoClient("mongodb+srv://admin:KesummWHH5yr68c@cluster0.mi5o8.mongodb.net/web_simulation?retryWrites=true&w=majority")
+cluster = MongoClient("mongodb://127.0.0.1:27017/")
+print(cluster)
 db = cluster["web_simulation"]
 users = db["users"]
 records = db["records"]
@@ -218,7 +220,6 @@ def index():
                             latency = subprocess.check_output('cd static/ns-lora; cat "log.txt" | grep -e "GatewayLorawanMac:Receive()" -e "EndDeviceLorawanMac:Send(" > "log-parsed.txt"; python3 get_latencies.py "log-parsed.txt"', shell=True, text=True,stderr=subprocess.DEVNULL)
                 
                             subprocess.check_output('cd static/ns-lora; rm "log.txt"; rm "log-parsed.txt"', shell=True, text=True,stderr=subprocess.DEVNULL)
-                            
                     print(output)
                     return output, latency
             #Call NS-3 simulation by python shell script according network type
@@ -245,7 +246,8 @@ def index():
 
                     session['energy_consumption'] = energy
                     session['throughput'] = throughput
-                    session['latency'] = str(float(latency) * 1000) # To get in ms
+                    latency = float(latency) * 1000
+                    session['latency'] = str(latency) # To get in ms
                     session['success_rate'] = success_rate
                     session['battery_lifetime'] = battery_lifetime
                     #If a user has already login, save input parameters and results in JSON. 
@@ -262,7 +264,7 @@ def index():
                     #wait for all threads to finish
                     thread1.join()
                     output, latency = thread1.output, thread1.latency
-
+                    throughput = 0
                     lines = output.splitlines()
                     line = lines[0]
                     i = 0
@@ -276,6 +278,9 @@ def index():
                     battery_lifetime = round(((capacity / energy) * float(session['simulation_time'])) / 86400 / 365, 2)
                     energy = round(energy, 2)
                     session['energy_consumption'] = energy
+                    latency = float(latency) * 1000
+                    session['latency'] = str(latency) # To get in ms
+                    session['latency'] = latency
                     session['throughput'] = throughput
                     session['success_rate'] = success_rate
                     session['battery_lifetime'] = battery_lifetime
@@ -288,7 +293,7 @@ def index():
 
                 jResults = {
                     "throughput": throughput,
-                    "latency":  str(float(latency) * 1000), # To get in ms
+                    "latency":  latency, # To get in ms
                     "success_rate": success_rate,
                     "energy_consumption": energy,
                     "battery_lifetime": battery_lifetime
@@ -338,4 +343,4 @@ def logout():
     return redirect(url_for('index'))
 
 if __name__ == "__main__" :
-    app.run(debug=True, reloader_interval=999999)
+    app.run(debug=True, reloader_interval=5)

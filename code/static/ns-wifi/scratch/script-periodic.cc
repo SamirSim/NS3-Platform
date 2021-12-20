@@ -23,6 +23,8 @@
 #include "ns3/energy-module.h"
 #include "ns3/wifi-radio-energy-model-helper.h"
 #include "ns3/applications-module.h"
+#include "ns3/propagation-loss-model.h"
+ #include "ns3/propagation-delay-model.h"
 #include <iomanip>
 
 using namespace ns3;
@@ -46,13 +48,35 @@ NS_LOG_COMPONENT_DEFINE ("script-periodic");
 int main (int argc, char *argv[]) {
   SeedManager::SetSeed (3);  // Changes seed from default of 1 to 3
   SeedManager::SetRun (2);  // Changes run number from default of 1 to 7
-  double simulationTime = 5; // Seconds
-  uint32_t nWifi = 1; // Number of stations
-  uint32_t MCS = 0; // Number of stations
-  uint32_t txPower = 9; // Number of stations
-  std::string trafficDirection = "upstream";
+  /*/ Input parameters definition /*/
+  // Seconds
+  double simulationTime = 10; 
+  // Number of stations
+  uint32_t nWifi = 1; 
+  // Modulation and Coding Scheme
+  uint32_t MCS = 0; 
+  // TxPower
+  uint32_t txPower = 9; 
+  // Traffic direction
+  std::string trafficDirection = "upstream"; 
+  // Payload size in bytes
   uint32_t payloadSize = 1024; 
-  std::string period = "1";
+  // Packet period in seconds
+  std::string period = "1"; 
+  // Meters between AP and stations
+  double distance = 1.0; 
+  // Allow or not the packet agregation
+  bool agregation = false; 
+  // BW Channel Width in MHz
+  int channelWidth = 80; 
+  // Indicates whether Short Guard Interval is enabled or not
+  int sgi = 0; 
+  // Delay propagation model
+  std::string propDelay = "ConstantSpeedPropagationDelayModel";
+  // Loss propagation model 
+  std::string propLoss = "LogDistancePropagationLossModel";
+  // Number of spatial streams 
+  int spatialStreams = 1; 
 
   bool latency = true;
   bool energyPower = true;
@@ -62,15 +86,6 @@ int main (int argc, char *argv[]) {
   bool successRate = true;
 
   bool hiddenStations = false;
-
-  double distance = 1.0; // Meters between AP and stations
-  bool agregation = false; // Allow or not the packet agregation
-  int channelWidth = 80; // BW Channel Width in MHz
-  int sgi = 0; // Indicates whether Short Guard Interval is enabled or not (SGI==1 <==> GI=400ns)
-  //Avanced parameters
-  std::string propDelay = "ConstantSpeedPropagationDelayModel";
-  std::string propLoss = "LogDistancePropagationLossModel";
-  int spatialStreams = 1;
 
   //Energy parameters
   double tx = 0.52;  // in W
@@ -117,11 +132,11 @@ int main (int argc, char *argv[]) {
 
   YansWifiChannelHelper channel = YansWifiChannelHelper::Default ();
 
-  //std::cout << propDelay << " " << propLoss << " " << distance << " " << MCS <<std::endl;
+  //channel.AddPropagationLoss("ns3::"+propLoss);
+  //channel.SetPropagationDelay("ns3::"+propDelay);
 
-  //channel.SetPropagationDelay ("ns3::"+propDelay);
-  //channel.AddPropagationLoss ("ns3::"+propLoss);
 
+  /*/ Nodes creation and placement /*/
   NodeContainer wifiStaNodes;
   wifiStaNodes.Create (nWifi);
   NodeContainer wifiApNode;
@@ -164,7 +179,7 @@ int main (int argc, char *argv[]) {
     mobility.Install (wifiStaNodes);
   }
   else {
-    // Setting stations' positions
+    /*/ Positioning Nodes /*/
     for (uint32_t i = 0; i < nWifi; i++) {
         positionAlloc->Add (Vector (distance, 0.0, 0.0));
     }
@@ -173,19 +188,20 @@ int main (int argc, char *argv[]) {
     mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
     mobility.Install (wifiStaNodes);
 
-    Ptr<ListPositionAllocator> positionAllocAp = CreateObject<ListPositionAllocator> ();
-    positionAllocAp->Add (Vector (0.0, 0.0, 0.0));
-    mobility.SetPositionAllocator (positionAllocAp);
+    Ptr<ListPositionAllocator> positionAp = CreateObject<ListPositionAllocator> ();
+    positionAp->Add (Vector (0.0, 0.0, 0.0));
+    mobility.SetPositionAllocator (positionAp);
     mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
     mobility.Install (wifiApNode);
 
     if (latency) {
-      positionAllocAp->Add (Vector (distance, 0.0, 0.0));
-      mobility.SetPositionAllocator (positionAllocAp);
+      positionAp->Add (Vector (distance, 0.0, 0.0));
+      mobility.SetPositionAllocator (positionAp);
       mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
       mobility.Install (wifiProbingNode);
     }
   }
+  /* Layers installation */
   YansWifiPhyHelper phy;
   phy.SetChannel (channel.Create ());
 
@@ -195,12 +211,13 @@ int main (int argc, char *argv[]) {
 
   std::ostringstream oss;
   oss << "VhtMcs" << MCS;
-  wifi.SetRemoteStationManager ("ns3::ConstantRateWifiManager","DataMode", StringValue (oss.str ()),
+  wifi.SetRemoteStationManager ("ns3::ConstantRateWifiManager",
+                                "DataMode", StringValue (oss.str ()),
                                 "ControlMode", StringValue (oss.str ()));
 
   Ssid ssid = Ssid ("ns3-80211ac");
 
-  // Installing phy & mac layers on the overloading stations
+  // Installing phy & mac layers on the stations
   mac.SetType ("ns3::StaWifiMac",
               "Ssid", SsidValue (ssid));
   NetDeviceContainer staDevices;
@@ -218,11 +235,16 @@ int main (int argc, char *argv[]) {
   NetDeviceContainer apDevice;
   apDevice = wifi.Install (phy, mac, wifiApNode);
 
+
+  /*/ Low-level parameters configuration /*/
   // Set channel width
-  Config::Set ("/NodeList/*/DeviceList/*/$ns3::WifiNetDevice/Phy/ChannelWidth", UintegerValue (channelWidth));
+  Config::Set ("/NodeList/*/DeviceList/*/$ns3::WifiNetDevice/Phy/ChannelWidth", 
+              UintegerValue (channelWidth));
 
   // Set guard interval
-  Config::Set ("/NodeList/*/DeviceList/*/$ns3::WifiNetDevice/HtConfiguration/ShortGuardIntervalSupported", BooleanValue (sgi));
+  Config::Set ("/NodeList/*/DeviceList/*/$ns3::WifiNetDevice/HtConfiguration/ShortGuardIntervalSupported",
+              BooleanValue (sgi));
+
 
   /* Internet stack*/
   InternetStackHelper stack;
@@ -233,7 +255,7 @@ int main (int argc, char *argv[]) {
     stack.Install (wifiProbingNode);
   }
 
-  // Setting IP addresses
+  /*/ IP addresses configuration /*/
   Ipv4AddressHelper address;
   address.SetBase ("10.0.0.0", "255.255.0.0");
   Ipv4InterfaceContainer ApInterface;
@@ -248,9 +270,10 @@ int main (int argc, char *argv[]) {
 
   Ipv4GlobalRoutingHelper::PopulateRoutingTables ();
 
+  /*/ Setting probing application /*/
   if (latency) {
     // UDP Echo Server application to be installed in the AP
-    int echoPort = 9;
+    int echoPort = 11;
     UdpEchoServerHelper echoServer(echoPort); // Port # 9
     uint32_t payloadSizeEcho = 1023; //Packet size for Echo UDP App
 
@@ -298,14 +321,14 @@ int main (int argc, char *argv[]) {
     wifi_dev->GetMac ()->SetAttribute ("BE_MaxAmpduSize", UintegerValue (0));
     wifi_dev->GetMac ()->SetAttribute ("BE_MaxAmsduSize", UintegerValue (0));
   }
-
-  // Set txPower
+  // Set txPower in the stations
   for (uint32_t index = 0; index < nWifi; ++index) {
     Ptr<WifiPhy> phy_tx = dynamic_cast<WifiNetDevice*>(GetPointer((staDevices.Get(index))))->GetPhy();
     phy_tx->SetTxPowerEnd(txPower);
     phy_tx->SetTxPowerStart(txPower);
   }
 
+  // Set txPower in the AP
   Ptr<WifiPhy> phy_tx = dynamic_cast<WifiNetDevice*>(GetPointer((apDevice.Get(0))))->GetPhy();
   phy_tx->SetTxPowerEnd(txPower);
   phy_tx->SetTxPowerStart(txPower);
@@ -316,11 +339,12 @@ int main (int argc, char *argv[]) {
     phy_tx->SetTxPowerStart(txPower);
   }
 
-  /* Setting applications */
+  /*/ Setting traffic applications /*/
   ApplicationContainer sourceApplications, sinkApplications;
-  uint32_t portNumber = 11;
+  uint32_t portNumber = 9;
   double min = 0.0;
   double max = 0.5;
+  double periodSeconds = std::stof(period);
 
   if (trafficDirection == "upstream") {
     auto ipv4 = wifiApNode.Get (0)->GetObject<Ipv4> ();
@@ -334,26 +358,29 @@ int main (int argc, char *argv[]) {
         // Disable A-MPDU & A-MSDU in each station
         Ptr<NetDevice> dev = wifiStaNodes.Get (index)->GetDevice (0);
         Ptr<WifiNetDevice> wifi_dev = DynamicCast<WifiNetDevice> (dev);
-        wifi_dev->GetMac ()->SetAttribute ("BE_MaxAmpduSize", UintegerValue (0));
-        wifi_dev->GetMac ()->SetAttribute ("BE_MaxAmsduSize", UintegerValue (0));
+        wifi_dev->GetMac ()->SetAttribute ("BE_MaxAmpduSize", 
+                                          UintegerValue (0));
+        wifi_dev->GetMac ()->SetAttribute ("BE_MaxAmsduSize", 
+                                          UintegerValue (0));
       }
       
       // UDP Client application to be installed in the stations
-      UdpClientHelper echoClient2(address, portNumber);
+      UdpClientHelper echoClient(address, portNumber);
     
-      echoClient2.SetAttribute("MaxPackets", UintegerValue(100000));
-      echoClient2.SetAttribute("Interval", TimeValue(Seconds(std::stof(period))));
-      echoClient2.SetAttribute("PacketSize", UintegerValue(payloadSize));
+      echoClient.SetAttribute("MaxPackets", UintegerValue(100000));
+      echoClient.SetAttribute("Interval", TimeValue(Seconds(periodSeconds)));
+      echoClient.SetAttribute("PacketSize", UintegerValue(payloadSize));
 
+      // Desynchronize the sending applications
       Ptr<UniformRandomVariable> x = CreateObject<UniformRandomVariable> ();
       x->SetAttribute ("Min", DoubleValue (min));
       x->SetAttribute ("Max", DoubleValue (max));
 
       double value = 1 + x->GetValue ();
 
-      ApplicationContainer sourceApplications1 = echoClient2.Install (wifiStaNodes.Get(index));
-      sourceApplications1.Start(Seconds(value));
-      sourceApplications1.Stop(Seconds(simulationTime+value));
+      ApplicationContainer sourceApplications = echoClient.Install (wifiStaNodes.Get(index));
+      sourceApplications.Start(Seconds(value));
+      sourceApplications.Stop(Seconds(simulationTime+value));
     }
   }
   else {
@@ -391,68 +418,79 @@ int main (int argc, char *argv[]) {
       sinkApplications.Add(packetSinkHelper.Install (wifiStaNodes.Get (index)));    
     }
   }
-  // Start the UDP Client & Server applications
+  /*/ Starting applications /*/
   sinkApplications.Start (Seconds (0.0));
   sinkApplications.Stop (Seconds (simulationTime + 2));
-  sourceApplications.Start (Seconds (1.0));
-  sourceApplications.Stop (Seconds (simulationTime + 1));
 
+  /*/ Installing energy models /*/
   DeviceEnergyModelContainer deviceModels;
 
-  double capacityJoules = (batteryCap / 1000.0) * voltage * 3600; // 5.2 Ah * 12 V * 3600
+  double capacityJoules = (batteryCap / 1000.0) * voltage * 3600;
 
-  if (energyRatio || energyPower) {
-    if (!batteryRV) {
-      BasicEnergySourceHelper basicSourceHelper;
-      basicSourceHelper.Set ("BasicEnergySupplyVoltageV", DoubleValue (voltage));
-      basicSourceHelper.Set ("BasicEnergySourceInitialEnergyJ", DoubleValue (capacityJoules));
-      EnergySourceContainer sources = basicSourceHelper.Install(wifiStaNodes);
-
-      WifiRadioEnergyModelHelper radioEnergyHelper;
-      deviceModels = radioEnergyHelper.Install (staDevices, sources);
-    }
-    else {
-      RvBatteryModelHelper rvModelHelper;
-      rvModelHelper.Set ("RvBatteryModelOpenCircuitVoltage", DoubleValue(24));
-      rvModelHelper.Set ("RvBatteryModelCutoffVoltage", DoubleValue(0)); // This way, the supply voltage is 12 V
-      rvModelHelper.Set ("RvBatteryModelAlphaValue", DoubleValue(capacityJoules / voltage)); // Alpha = Battery Capacity in Coulomb
-      EnergySourceContainer sources = rvModelHelper.Install(wifiStaNodes);
-
-      WifiRadioEnergyModelHelper radioEnergyHelper;
-      deviceModels = radioEnergyHelper.Install (staDevices, sources);
-    }    
+  if (!batteryRV) { // If the battery model is linear
+    BasicEnergySourceHelper basicSourceHelper;
+    basicSourceHelper.Set ("BasicEnergySupplyVoltageV", 
+                          DoubleValue (voltage));
+    basicSourceHelper.Set ("BasicEnergySourceInitialEnergyJ", 
+                          DoubleValue (capacityJoules));
+    EnergySourceContainer sources = basicSourceHelper.Install(wifiStaNodes);
+    WifiRadioEnergyModelHelper radioEnergyHelper;
+    deviceModels = radioEnergyHelper.Install (staDevices, sources);
   }
 
-  AsciiTraceHelper ascii;
-
-  phy.SetPcapDataLinkType (WifiPhyHelper::DLT_IEEE802_11_RADIO);
+  else { // If the battery model is RV
+    RvBatteryModelHelper rvModelHelper;
+    rvModelHelper.Set ("RvBatteryModelOpenCircuitVoltage", 
+                      DoubleValue(voltage));
+    rvModelHelper.Set ("RvBatteryModelCutoffVoltage", 
+                      DoubleValue(0)); 
+    rvModelHelper.Set ("RvBatteryModelAlphaValue", 
+                      DoubleValue(capacityJoules / voltage));
+    EnergySourceContainer sources = rvModelHelper.Install(wifiStaNodes);
+    WifiRadioEnergyModelHelper radioEnergyHelper;
+    deviceModels = radioEnergyHelper.Install (staDevices, sources);
+  }    
   //std::string s = "telemetry-23Bytes/"+std::to_string(nWifi)+"-"+period+"-"+std::to_string(MCS)+"-"+std::to_string(payloadSize);
-  //phy.EnableAsciiAll (ascii.CreateFileStream(s+".tr"));
-  //phy.EnablePcap (s+".pcap", apDevice.Get(0), false, true);
+  
+  /*/ Traces files generation /*/
+  AsciiTraceHelper ascii;
+  phy.SetPcapDataLinkType (WifiPhyHelper::DLT_IEEE802_11_RADIO);
+  std::string s = "trace";
+  phy.EnableAsciiAll (ascii.CreateFileStream(s+".tr"));
+  phy.EnablePcap (s+".pcap", apDevice.Get(0), false, true);
 
+  /*/ Starting simulation /*/
   Simulator::Stop (Seconds (simulationTime + 2));
   Simulator::Run ();
 
   std::cout << std::fixed;
   std::cout << std::setprecision(2);
   
+  /*/ Gatherting KPIs /*/
   if (energyRatio || energyPower) {
-    double energy = 0;
-    for (DeviceEnergyModelContainer::Iterator iter = deviceModels.Begin (); iter != deviceModels.End (); iter ++) {
+    /*/ Calculating Energy KPIs /*/
+    double energy = 0, battery_lifetime = 0;
+    DeviceEnergyModelContainer::Iterator iter ;
+    for (iter = deviceModels.Begin (); iter != deviceModels.End (); iter ++) {
       double energyConsumed = (*iter)->GetTotalEnergyConsumption ();
       NS_LOG_UNCOND ("End of simulation (" << Simulator::Now ().GetSeconds ()
-                    << "s) Total energy consumed by radio (Station) = " << energyConsumed << "J");
-      std::cout << "Total energy consumed by radio (Station): " << energyConsumed << std::endl;
-      std::cout << "Battery lifetime: " << capacityJoules << " " << ((capacityJoules / energyConsumed) * simulationTime) / 86400 << std::endl;
+                    << "s) Total energy consumed by radio (Station) = " 
+                    << energyConsumed << "J");
+      std::cout << "Total energy consumed by radio (Station): " 
+                << energyConsumed << std::endl;
+      battery_lifetime = ((capacityJoules / energyConsumed) * simulationTime);
+      battery_lifetime = battery_lifetime / 86400; // Days
+      std::cout << "Battery lifetime: " << battery_lifetime << std::endl;
       energy = energyConsumed;
-      break;
+      break; // Energy in only one station
     }
   }
 
   double totalPacketsThrough = 0, throughput = 0;
   if (trafficDirection == "upstream") {
     for (uint32_t index = 0; index < sinkApplications.GetN (); ++index) {
-      totalPacketsThrough = DynamicCast<PacketSink> (sinkApplications.Get (index))->GetTotalRx ();
+      totalPacketsThrough = DynamicCast<PacketSink> (sinkApplications.Get (index))
+                                                    ->GetTotalRx ();
       throughput += ((totalPacketsThrough * 8) / ((simulationTime) * 1024 * 1024)); //Mbit/s
       std::cout << "Throughput: " << throughput << std::endl;
     }
@@ -463,16 +501,18 @@ int main (int argc, char *argv[]) {
     }
   }
 
-  double totalSentPackets = (( 1 / std::stof(period)) * simulationTime ) * nWifi; // Estimation of number of generated packets in the network
+  double totalSentPackets = (( 1 / periodSeconds * simulationTime ) * nWifi); // Estimation of number of generated packets in the network
   double totalReceivedPackets = totalPacketsThrough / payloadSize; // Number of total received packets
 
   if (energyRatio) {
     double receivedByteStation = totalPacketsThrough / nWifi; // Number of successfuly received bytes from one station
-    std::cout << "Number of received bytes from one station: " << receivedByteStation << std::endl;
+    std::cout << "Number of received bytes from one station: "
+              << receivedByteStation << std::endl;
   }
 
   if (crossFactor) {
-    std::cout << "Number of generated packets by one station: " << totalSentPackets / nWifi << std::endl; // Number of generated packets by station
+    std::cout << "Number of generated packets by one station: " 
+              << totalSentPackets / nWifi << std::endl; // Number of generated packets by station
   }
 
   if (successRate) {

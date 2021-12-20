@@ -24,9 +24,16 @@ using namespace ns3;
 
 NS_LOG_COMPONENT_DEFINE ("scratch-simulator");
 
+void changeParameters (double channelWidth, double sgi) {
+  std::cout << "here" << std::endl;
+  Config::Set ("/NodeList/*/DeviceList/*/$ns3::WifiNetDevice/Phy/ChannelWidth", UintegerValue (channelWidth));
+  Config::Set ("/NodeList/*/DeviceList/*/$ns3::WifiNetDevice/HtConfiguration/ShortGuardIntervalSupported", BooleanValue (sgi));
+
+}
+
 int main (int argc, char *argv[]) {
   //Principal parameters
-  double simulationTime = 1; // Seconds
+  double simulationTime = 10; // Seconds
   double distance = 1.0; // Meters
   uint32_t nWifi = 1; // Number of stations
   bool agregation = false; // Allow or not the packet agregation
@@ -35,7 +42,7 @@ int main (int argc, char *argv[]) {
   uint32_t payloadSize = 1472; //1500 byte IP packet
   double loadFreq = 1.0; //packet per sec
   uint32_t meanLoad = 2; // Mean Load in Mbps
-  int hiddenDevices = 1; //Indicate whether devices are hidden or not (O = Yes, 1 = No)
+  int hiddenDevices = 0; //Indicate whether devices are hidden or not (O = Yes, 1 = No)
   
   //Avanced parameters
   int mcs = 5; // -1 indicates an unset value
@@ -231,10 +238,11 @@ int main (int argc, char *argv[]) {
   AsciiTraceHelper ascii;
 
   phy.SetPcapDataLinkType (WifiPhyHelper::DLT_IEEE802_11_RADIO);
-  /*std::string s = "wifi/overload/throughput/" + trafficDirection + "/ac/traces2/" + std::to_string(nWifi);
-  phy.EnableAsciiAll (ascii.CreateFileStream(s+".tr"));
+  std::string s = "trace" + std::to_string(nWifi);
+  //phy.EnableAsciiAll (ascii.CreateFileStream(s+".tr"));
   phy.EnablePcap (s+".pcap", apDevice.Get(0), false, true);
-  */
+
+  Simulator::Schedule(Seconds(5), &changeParameters, 40, 1);
 
   Simulator::Stop (Seconds (simulationTime + 1));
   Simulator::Run ();

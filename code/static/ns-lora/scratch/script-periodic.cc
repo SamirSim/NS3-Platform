@@ -33,7 +33,7 @@ NS_LOG_COMPONENT_DEFINE ("script-periodic");
 
 int
 main (int argc, char *argv[]) {
-  // Network settings
+  /*/ Defining input parameters /*/
   double simulationTime = 36000;
   int nSta = 1;
   int nGateways = 1;
@@ -50,7 +50,6 @@ main (int argc, char *argv[]) {
   std::string propDelay = "ConstantSpeedPropagationDelayModel";
   std::string propLoss = "LogDistancePropagationLossModel";
 
-  //Energy parameters
   double tx = 0.52;  // in W
   double rx = 0.16;  // in W
   double txFactor = 0.93; // in mJ
@@ -87,7 +86,7 @@ main (int argc, char *argv[]) {
   LogComponentEnableAll (LOG_PREFIX_NODE);
   LogComponentEnableAll (LOG_PREFIX_TIME);
 
-  // Mobility
+  /*/ Nodes creation and placement /*/
   MobilityHelper mobility;
 
   Ptr<ListPositionAllocator> allocator2 = CreateObject<ListPositionAllocator> ();
@@ -107,7 +106,7 @@ main (int argc, char *argv[]) {
 
   Ptr<LoraChannel> channel = CreateObject<LoraChannel> (loss, delay);
 
-  // Create the LoraPhyHelper
+  // Installing phy & mac layers on the overloading stations
   LoraPhyHelper phyHelper = LoraPhyHelper ();
   phyHelper.SetChannel (channel);
 
@@ -134,6 +133,7 @@ main (int argc, char *argv[]) {
   NodeContainer gateways;
   gateways.Create (nGateways);
 
+   /*/ Low-level parameters configuration /*/
   Ptr<ListPositionAllocator> allocator = CreateObject<ListPositionAllocator> ();
   // Make it so that nodes are at a certain height > 0
   allocator->Add (Vector (0.0, 0.0, 0.0));
@@ -149,12 +149,14 @@ main (int argc, char *argv[]) {
 
   NS_LOG_DEBUG ("Completed configuration");
 
+  /*/ Setting traffic applications /*/
   Time appStopTime = Seconds (simulationTime);
   PeriodicSenderHelper appHelper = PeriodicSenderHelper ();
   appHelper.SetPeriod (Seconds (period));
   appHelper.SetPacketSize (payloadSize);
   ApplicationContainer appContainer = appHelper.Install (endDevices);
 
+  /*/ Installing energy models /*/
   if (energyRatio) {    
     BasicEnergySourceHelper basicSourceHelper;
     LoraRadioEnergyModelHelper radioEnergyHelper;
@@ -199,7 +201,8 @@ main (int argc, char *argv[]) {
 
   std::cout << std::fixed;
   std::cout << std::setprecision(2);
-  
+
+  /*/ Gatherting KPIs /*/
   std::cout << "Success rate: " << std::to_string(tracker.CountMacPacketsGlobally (Seconds (0), appStopTime)) << std::endl;
   std::cout << "Throughput: " << std::to_string((tracker.CountMacPacketsReceived (Seconds (0), appStopTime)*payloadSize*8)/simulationTime) << std::endl; // bps
 

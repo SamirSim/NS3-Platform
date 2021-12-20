@@ -45,17 +45,12 @@ static void GenerateTraffic (Ptr<Socket> socket,
 		advance(it, index);
 		int pktSize = *it;
 
-		//pktSize = 60000;
-		//pktSize = pktSize * 1; // *3 for 5 Mbps, *6.25 for 8 Mbps
-
-		//if (pktSize > 60000) pktSize = 60000;
-
 		socket->Send (Create<Packet> (pktSize));
 		
 		totalBytes += pktSize;
 		
 		Simulator::Schedule (pktInterval, &GenerateTraffic,
-						socket, pktCount-1, pktInterval, index + 1);
+							socket, pktCount-1, pktInterval, index + 1);
 	}
 	else {
 		socket->Close ();

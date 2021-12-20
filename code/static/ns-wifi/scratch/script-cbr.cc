@@ -442,12 +442,17 @@ int main (int argc, char *argv[]) {
     totalpacketsSent = totalpacketsSent + packetsSent.Get();
   }
 
+  
   double totalPacketsThrough = 0, throughput = 0;
   if (trafficDirection == "upstream") {
     for (uint32_t index = 0; index < sinkApplications.GetN (); ++index) {
-      totalPacketsThrough = DynamicCast<PacketSink> (sinkApplications.Get (index))->GetTotalRx ();
-      throughput += ((totalPacketsThrough * 8) / ((simulationTime) * 1000000.0)); //Mbit/s
-      std::cout << "Throughput: " << " " << throughput << std::endl;
+      /*/ Calculating Packet throughput and packet delivery /*/
+      totalPacketsThrough = DynamicCast<PacketSink> (
+                            sinkApplications.Get (0))->GetTotalRx ();
+      throughput += ((totalPacketsThrough * 8) / ((simulationTime) * 1000000.0)); //Mbps
+      std::cout << "Packet Throughput: " << throughput << std::endl;
+      double successRate =  (totalPacketsThrough / totalpacketsSent / nWifi) * 100;
+      std::cout << "Packet Delivery: " << successRate << std::endl; // %
     }
   }
   else {
@@ -466,8 +471,7 @@ int main (int argc, char *argv[]) {
   }
 
   if (successRate) {
-    double wholeSuccessRate =  (totalPacketsThrough / totalpacketsSent / nWifi) * 100;
-    std::cout << "Success rate: " << wholeSuccessRate << std::endl; // Success rate percentage
+    
   }
   
   Simulator::Destroy ();

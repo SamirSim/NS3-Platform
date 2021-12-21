@@ -111,7 +111,7 @@
                     : {{ user_record['parameters']['propagation_loss_model'] }}
                 </div>
             </div>  
-        {% if user_record['parameters']['network'] != 'LoRaWAN' %}         
+        {% if user_record['parameters']['network'] != 'LoRaWAN' %}        
             <div class="row mb-2">
                 <div class="col-7">
                     MCS
@@ -136,6 +136,38 @@
                     : {{ user_record['parameters']['spatial_streams'] }}
                 </div>
             </div>
+            <div class="row mb-2">
+                <div class="col-7">
+                    Tx current draw
+                </div>
+                <div class="col-5">
+                : {{ user_record['parameters']['tx_current'] }} w
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-7">
+                    Rx current draw
+                </div>
+                <div class="col-5">
+                : {{ user_record['parameters']['rx_current'] }} w
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-7">
+                    Idle current draw
+                </div>
+                <div class="col-5">
+                : {{ user_record['parameters']['idle_current'] }} mJ
+                </div>
+            </div> 
+            <div class="row mb-2">
+                <div class="col-7">
+                    CCA_Busy draw current
+                </div>
+                <div class="col-5">
+                : {{ user_record['parameters']['cca_busy_current'] }} mJ
+                </div>
+            </div> 
         {% else %}   
             <div class="row mb-2">
                 <div class="col-7">
@@ -175,6 +207,30 @@
                 </div>
                 <div class="col-5">
                     : {{ user_record['parameters']['sf'] }}
+                </div>
+            </div> 
+            <div class="row mb-2">
+                <div class="col-7">
+                    Tx current draw
+                </div>
+                <div class="col-5">
+                : {{ user_record['parameters']['tx_current'] }} w
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-7">
+                    Rx current draw
+                </div>
+                <div class="col-5">
+                : {{ user_record['parameters']['rx_current'] }} w
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-7">
+                    Idle current draw
+                </div>
+                <div class="col-5">
+                : {{ user_record['parameters']['idle_current'] }} mJ
                 </div>
             </div> 
         {% endif %}    

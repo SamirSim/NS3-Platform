@@ -1,10 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, SelectField, BooleanField, SubmitField, DecimalField, RadioField, DecimalField, TextField, PasswordField
+from wtforms import IntegerField, SelectField, BooleanField, SubmitField, DecimalField, RadioField, TextField, PasswordField
 from wtforms import validators
 from wtforms.fields.simple import PasswordField
 from wtforms.i18n import messages_path
 from wtforms.validators import DataRequired, Length, NumberRange, Email, InputRequired, EqualTo
-
 
 class ScenarioForm(FlaskForm):
     choices_network = [(0,'Choose network type'), ('Wi-Fi 802.11ac', 'Wi-Fi 802.11ac'), ('Wi-Fi 802.11ax', 'Wi-Fi 802.11ax'), ('LoRaWAN', 'LoRaWAN')] 
@@ -41,10 +40,10 @@ class ScenarioForm(FlaskForm):
     mcs = SelectField('MCS', choices=choices_MCS, default='12')
     bandwidth = SelectField('Bandwidth', choices=[])
     spatial_streams = SelectField('Spatial streams', choices=choices_spatial_streams, default='1')
-    tx = DecimalField('Tx, watts', validators=[DataRequired(), NumberRange(min=0, message='Tx must not be negative.')], default=0.52)
-    rx = DecimalField('Rx, watts', validators=[DataRequired(), NumberRange(min=0, message='Rx must not be negative.')], default=0.16)
-    tx_factor = DecimalField('Tx X-factor, mJ',validators=[DataRequired(), NumberRange(min=0, message='Tx X factor must not be negative.')], default=0.93)
-    rx_factor = DecimalField('Rx X-factor, mJ',validators=[DataRequired(), NumberRange(min=0, message='Rx X factor must not be negative.')], default=0.93)
+    tx_current = DecimalField('Tx current draw, mA', validators=[DataRequired(), NumberRange(min=0, message='Tx current draw must not be negative.')], default=107)
+    rx_current = DecimalField('Rx current draw, mA', validators=[DataRequired(), NumberRange(min=0, message='Rx current draw must not be negative.')], default=40)
+    idle_current = DecimalField('Idle current draw, mA',validators=[DataRequired(), NumberRange(min=0, message='Idle current draw must not be negative.')], default=1)
+    cca_busy_current = DecimalField('CCA_Busy current draw, mA',validators=[DataRequired(), NumberRange(min=0, message='CCA_Busy current draw must not be negative.')], default=1)
     voltage = DecimalField('Voltage, volts',validators=[DataRequired(), NumberRange(min=0, message='Voltage must not be negative.')], default=12)
     battery_cap = IntegerField('Battery capacity, mAh',validators=[DataRequired(), NumberRange(min=0, message='A battery ca must not be negative.')], default=5200)
     submit = SubmitField('Submit')

@@ -170,6 +170,22 @@
                         {{ form.spatial_streams(class="form-select",id="spatial_streams") }}
                     </div>
                     <div class="mb-3">
+                        {{ form.tx_current.label(class="form-label", id="lbl_tx_current") }}
+                        {{ form.tx_current(class="form-control",id="tx_current") }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.rx_current.label(class="form-label", id="lbl_rx_current") }}
+                        {{ form.rx_current(class="form-control",id="rx_current") }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.idle_current.label(class="form-label", id="lbl_idle_current") }}
+                        {{ form.idle_current(class="form-control",id="idle_current") }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form.cca_busy_current.label(class="form-label", id="lbl_cca_busy_current") }}
+                        {{ form.cca_busy_current(class="form-control",id="cca_busy_current") }}
+                    </div>
+                    <div class="mb-3">
                         {{ form.voltage.label(class="form-label", id="lbl_voltage") }}
                         {{ form.voltage(class="form-control",id="voltage") }}
                     </div>

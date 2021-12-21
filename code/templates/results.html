@@ -136,6 +136,38 @@
                     : {{ session['spatial_streams'] }}
                 </div>
             </div>
+            <div class="row mb-2">
+                <div class="col-7">
+                    Tx current draw
+                </div>
+                <div class="col-5">
+                   : {{ session['tx_current'] }} mA
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-7">
+                    Rx current draw
+                </div>
+                <div class="col-5">
+                   : {{ session['rx_current'] }} mA
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-7">
+                    Idle current draw
+                </div>
+                <div class="col-5">
+                : {{ session['idle_current'] }} mA
+                </div>
+            </div> 
+            <div class="row mb-2">
+                <div class="col-7">
+                    CCA_Busy current
+                </div>
+                <div class="col-5">
+                : {{ session['cca_busy_current'] }} mA
+                </div>
+            </div>
         {% else %}   
             <div class="row mb-2">
                 <div class="col-7">
@@ -177,6 +209,30 @@
                     : {{ session['sf'] }}
                 </div>
             </div> 
+            <div class="row mb-2">
+                <div class="col-7">
+                    Tx current draw
+                </div>
+                <div class="col-5">
+                   : {{ session['tx_current'] }} mA
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-7">
+                    Rx current draw
+                </div>
+                <div class="col-5">
+                   : {{ session['rx_current'] }} mA
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-7">
+                    Idle current draw
+                </div>
+                <div class="col-5">
+                : {{ session['idle_current'] }} mA
+                </div>
+            </div>
         {% endif %}    
             <div class="row mb-2">
                 <div class="col-7">

@@ -67,6 +67,14 @@ int main (int argc, char *argv[]) {
   std::string trafficDirection = "upstream";
   double fps = 30.0; // FPS is considered constant (30)
   std::string traceFile = "2Mbps.txt"; // Video trace file for stochastic traffic
+  // Tx current draw in mA
+  double txCurrent = 107;
+  // Rx current draw in mA
+  double rxCurrent = 40;
+  // CCA_Busy current draw in mA
+  double ccaBusyCurrent = 1;
+  // Idle current draw in mA
+  double idleCurrent = 1; 
 
   bool latency = true;
   bool energyPower = true;
@@ -107,6 +115,10 @@ int main (int argc, char *argv[]) {
   cmd.AddValue ("spatialStreams", "Number of Spatial Streams", spatialStreams);
   cmd.AddValue ("batteryCap", "Battery Capacity in mAh", batteryCap);
   cmd.AddValue ("voltage", "Battery voltage in Volts", voltage);
+  cmd.AddValue ("txCurrent", "Tx current draw in mA", txCurrent);
+  cmd.AddValue ("rxCurrent", "Rx current draw in mA", rxCurrent);
+  cmd.AddValue ("idleCurrent", "Idle current draw in mA", idleCurrent);
+  cmd.AddValue ("ccaBusyCurrent", "CCA Busy voltage in Volts", ccaBusyCurrent);
   cmd.AddValue ("nWifi", "Number of stations", nWifi);
   cmd.AddValue ("fps", "Frames per second", fps);
   cmd.AddValue ("trafficDirection", "Direction of traffic UL/DL", trafficDirection);
@@ -393,26 +405,35 @@ int main (int argc, char *argv[]) {
 
   double capacityJoules = (batteryCap / 1000.0) * voltage * 3600; // 5.2 Ah * 12 V * 3600
 
-  if (energyRatio || energyPower) {
-	if (!batteryRV) {
-	  BasicEnergySourceHelper basicSourceHelper;
-	  basicSourceHelper.Set ("BasicEnergySupplyVoltageV", DoubleValue (voltage));
-	  basicSourceHelper.Set ("BasicEnergySourceInitialEnergyJ", DoubleValue (capacityJoules));
-	  EnergySourceContainer sources = basicSourceHelper.Install(wifiStaNodes);
+  WifiRadioEnergyModelHelper radioEnergyHelper;
 
-	  WifiRadioEnergyModelHelper radioEnergyHelper;
-	  deviceModels = radioEnergyHelper.Install (staDevices, sources);
-	}
-	else {
-	  RvBatteryModelHelper rvModelHelper;
-	  rvModelHelper.Set ("RvBatteryModelOpenCircuitVoltage", DoubleValue(24));
-	  rvModelHelper.Set ("RvBatteryModelCutoffVoltage", DoubleValue(0)); // This way, the supply voltage is 12 V
-	  rvModelHelper.Set ("RvBatteryModelAlphaValue", DoubleValue(capacityJoules / voltage)); // Alpha = Battery Capacity in Coulomb
-	  EnergySourceContainer sources = rvModelHelper.Install(wifiStaNodes);
+  radioEnergyHelper.Set ("IdleCurrentA", DoubleValue (idleCurrent/1000));
+  radioEnergyHelper.Set ("TxCurrentA", DoubleValue (txCurrent/1000));
+  radioEnergyHelper.Set ("CcaBusyCurrentA", DoubleValue (ccaBusyCurrent/1000));
+  radioEnergyHelper.Set ("RxCurrentA", DoubleValue (rxCurrent/1000));
 
-	  WifiRadioEnergyModelHelper radioEnergyHelper;
-	  deviceModels = radioEnergyHelper.Install (staDevices, sources);
-	}    
+  if (!batteryRV) { // If the battery model is linear
+    BasicEnergySourceHelper basicSourceHelper;
+    basicSourceHelper.Set ("BasicEnergySupplyVoltageV", 
+                          DoubleValue (voltage));
+    basicSourceHelper.Set ("BasicEnergySourceInitialEnergyJ", 
+                          DoubleValue (capacityJoules));
+    EnergySourceContainer sources = basicSourceHelper.Install(wifiStaNodes);
+
+    deviceModels = radioEnergyHelper.Install (staDevices, sources);
+  }
+  else { // If the battery model is RV
+    RvBatteryModelHelper rvModelHelper;
+    rvModelHelper.Set ("RvBatteryModelOpenCircuitVoltage", 
+                      DoubleValue(voltage));
+    rvModelHelper.Set ("RvBatteryModelCutoffVoltage", 
+                      DoubleValue(0)); 
+    rvModelHelper.Set ("RvBatteryModelAlphaValue", 
+                      DoubleValue(capacityJoules / voltage));
+    EnergySourceContainer sources = rvModelHelper.Install(wifiStaNodes);
+    WifiRadioEnergyModelHelper radioEnergyHelper;
+    
+    deviceModels = radioEnergyHelper.Install (staDevices, sources);
   }
 
   AsciiTraceHelper ascii;

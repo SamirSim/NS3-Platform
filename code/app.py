@@ -137,14 +137,14 @@ def index():
                 mcs='5'
             session['bandwidth'] = str(form.bandwidth.data)
             session['spatial_streams'] = form.spatial_streams.data
-            tx = form.tx.data
-            session['tx'] = str(tx)
-            rx = form.rx.data
-            session['rx'] = str(rx)
-            tx_factor = form.tx_factor.data
-            session['tx_factor'] = str(tx_factor)
-            rx_factor = form.rx_factor.data
-            session['rx_factor'] = str(rx_factor)
+            tx_current = form.tx_current.data
+            session['tx_current'] = str(tx_current)
+            rx_current = form.rx_current.data
+            session['rx_current'] = str(rx_current)
+            idle_current = form.idle_current.data
+            session['idle_current'] = str(idle_current)
+            cca_busy_current = form.cca_busy_current.data
+            session['cca_busy_current'] = str(cca_busy_current)
             voltage = form.voltage.data
             session['voltage'] = str(voltage)
             session['battery_capacity'] = str(form.battery_cap.data)
@@ -167,10 +167,10 @@ def index():
             os.environ['PROPDELAY']=session['propagation_delay_model']
             os.environ['PROPLOSS']=session['propagation_loss_model']
             os.environ['BANDWIDTH']=session['bandwidth']
-            os.environ['TX']=session['tx']
-            os.environ['RX']=session['rx']
-            os.environ['TXFACTOR']=session['tx_factor']
-            os.environ['RXFACTOR']=session['rx_factor']
+            os.environ['TXCURRENT']=session['tx_current']
+            os.environ['RXCURRENT']=session['rx_current']
+            os.environ['IDLECURRENT']=session['idle_current']
+            os.environ['CCABUSYCURRENT']=session['cca_busy_current']
             os.environ['VOLTAGE']=session['voltage']
             os.environ['BATTERYCAP']=session['battery_capacity'] 
             #advanced varables for Wi-Fi only
@@ -200,18 +200,18 @@ def index():
                     print(os.environ['NETWORK'])
                     if os.environ['TRAFFICPROF'] == "cbr":
                         if os.environ['NETWORK'] == "Wi-Fi 802.11ac":
-                            output = subprocess.check_output('cd static/ns-wifi; ./waf --run "scratch/script-cbr.cc --distance=$DISTANCE --simulationTime=$SIMULATION_TIME --nWifi=$NUMDEVICES --trafficDirection=$TRAFFICDIR --payloadSize=$PACKETSIZE --dataRate=$MEANLOAD --hiddenStations=$HIDDENDEVICES --MCS=$MCS --channelWidth=$BANDWIDTH --propDelay=$PROPDELAY --propLoss=$PROPLOSS --spatialStreams=$SPATIALSTREAMS --batteryCap=$BATTERYCAP --voltage=$VOLTAGE" 2> log.txt', shell=True, text=True,stderr=subprocess.DEVNULL)
+                            output = subprocess.check_output('cd static/ns-wifi; ./waf --run "scratch/script-cbr.cc --distance=$DISTANCE --simulationTime=$SIMULATION_TIME --nWifi=$NUMDEVICES --trafficDirection=$TRAFFICDIR --payloadSize=$PACKETSIZE --dataRate=$MEANLOAD --hiddenStations=$HIDDENDEVICES --txCurrent=$TXCURRENT --rxCurrent=$RXCURRENT --idleCurrent=$IDLECURRENT --ccaBusyCurrent=$CCABUSYCURRENT --MCS=$MCS --channelWidth=$BANDWIDTH --propDelay=$PROPDELAY --propLoss=$PROPLOSS --spatialStreams=$SPATIALSTREAMS --batteryCap=$BATTERYCAP --voltage=$VOLTAGE" 2> log.txt', shell=True, text=True,stderr=subprocess.DEVNULL)
                             latency = subprocess.check_output('cd static/ns-wifi; cat "log.txt" | grep -e "client sent 1023 bytes" -e "server received 1023 bytes from" > "log-parsed.txt"; python3 get_latencies.py "log-parsed.txt"', shell=True, text=True,stderr=subprocess.DEVNULL)
                             subprocess.check_output('cd static/ns-wifi; rm "log.txt"; rm "log-parsed.txt"', shell=True, text=True,stderr=subprocess.DEVNULL)
                     elif os.environ['TRAFFICPROF'] == "vbr":
                         if os.environ['NETWORK'] == "Wi-Fi 802.11ac":
-                            output = subprocess.check_output('cd static/ns-wifi; ./waf --run "scratch/script-vbr.cc --distance=$DISTANCE --simulationTime=$SIMULATION_TIME --nWifi=$NUMDEVICES --trafficDirection=$TRAFFICDIR --fps=$FPS --hiddenStations=$HIDDENDEVICES --MCS=$MCS --channelWidth=$BANDWIDTH --propDelay=$PROPDELAY --propLoss=$PROPLOSS --spatialStreams=$SPATIALSTREAMS --batteryCap=$BATTERYCAP --voltage=$VOLTAGE" 2> log.txt', shell=True, text=True,stderr=subprocess.DEVNULL)
+                            output = subprocess.check_output('cd static/ns-wifi; ./waf --run "scratch/script-vbr.cc --distance=$DISTANCE --simulationTime=$SIMULATION_TIME --nWifi=$NUMDEVICES --trafficDirection=$TRAFFICDIR --fps=$FPS --hiddenStations=$HIDDENDEVICES --MCS=$MCS --channelWidth=$BANDWIDTH --propDelay=$PROPDELAY --propLoss=$PROPLOSS --txCurrent=$TXCURRENT --rxCurrent=$RXCURRENT --idleCurrent=$IDLECURRENT --ccaBusyCurrent=$CCABUSYCURRENT --spatialStreams=$SPATIALSTREAMS --batteryCap=$BATTERYCAP --voltage=$VOLTAGE" 2> log.txt', shell=True, text=True,stderr=subprocess.DEVNULL)
                             latency = subprocess.check_output('cd static/ns-wifi; cat "log.txt" | grep -e "client sent 1023 bytes" -e "server received 1023 bytes from" > "log-parsed.txt"; python3 get_latencies.py "log-parsed.txt"', shell=True, text=True,stderr=subprocess.DEVNULL)
                             subprocess.check_output('cd static/ns-wifi; rm "log.txt"; rm "log-parsed.txt"', shell=True, text=True,stderr=subprocess.DEVNULL)                    
                     elif os.environ['TRAFFICPROF'] == "periodic":
                         if os.environ['NETWORK'] == "Wi-Fi 802.11ac":
                             #print(os.environ['MCS'])
-                            output = subprocess.check_output('cd static/ns-wifi; ./waf --run "scratch/script-periodic.cc --distance=$DISTANCE --simulationTime=$SIMULATION_TIME --nWifi=$NUMDEVICES --trafficDirection=$TRAFFICDIR --payloadSize=$PACKETSIZE --period=$LOADFREQ --hiddenStations=$HIDDENDEVICES --MCS=$MCS --channelWidth=$BANDWIDTH --propDelay=$PROPDELAY --propLoss=$PROPLOSS --spatialStreams=$SPATIALSTREAMS --batteryCap=$BATTERYCAP --voltage=$VOLTAGE" 2> log.txt', shell=True, text=True,stderr=subprocess.DEVNULL)
+                            output = subprocess.check_output('cd static/ns-wifi; ./waf --run "scratch/script-periodic.cc --distance=$DISTANCE --simulationTime=$SIMULATION_TIME --nWifi=$NUMDEVICES --trafficDirection=$TRAFFICDIR --payloadSize=$PACKETSIZE --period=$LOADFREQ --hiddenStations=$HIDDENDEVICES --txCurrent=$TXCURRENT --rxCurrent=$RXCURRENT --idleCurrent=$IDLECURRENT --ccaBusyCurrent=$CCABUSYCURRENT --MCS=$MCS --channelWidth=$BANDWIDTH --propDelay=$PROPDELAY --propLoss=$PROPLOSS --spatialStreams=$SPATIALSTREAMS --batteryCap=$BATTERYCAP --voltage=$VOLTAGE" 2> log.txt', shell=True, text=True,stderr=subprocess.DEVNULL)
                             latency = subprocess.check_output('cd static/ns-wifi; cat "log.txt" | grep -e "client sent 1023 bytes" -e "server received 1023 bytes from" > "log-parsed.txt"; python3 get_latencies.py "log-parsed.txt"', shell=True, text=True,stderr=subprocess.DEVNULL)
                             subprocess.check_output('cd static/ns-wifi; rm "log.txt"; rm "log-parsed.txt"', shell=True, text=True,stderr=subprocess.DEVNULL)
                         elif os.environ['NETWORK'] == "LoRaWAN":

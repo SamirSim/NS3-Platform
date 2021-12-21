@@ -52,15 +52,15 @@ int main (int argc, char *argv[]) {
   // Seconds
   double simulationTime = 10; 
   // Number of stations
-  uint32_t nWifi = 1; 
+  int nWifi = 1; 
   // Modulation and Coding Scheme
-  uint32_t MCS = 0; 
+  int MCS = 0; 
   // TxPower
-  uint32_t txPower = 9; 
+  int txPower = 9; 
   // Traffic direction
   std::string trafficDirection = "upstream"; 
   // Payload size in bytes
-  uint32_t payloadSize = 1024; 
+  int payloadSize = 1024; 
   // Packet period in seconds
   std::string period = "1"; 
   // Meters between AP and stations
@@ -77,6 +77,14 @@ int main (int argc, char *argv[]) {
   std::string propLoss = "LogDistancePropagationLossModel";
   // Number of spatial streams 
   int spatialStreams = 1; 
+  // Tx current draw in mA
+  double txCurrent = 107;
+  // Rx current draw in mA
+  double rxCurrent = 40;
+  // CCA_Busy current draw in mA
+  double ccaBusyCurrent = 1;
+  // Idle current draw in mA
+  double idleCurrent = 1; 
 
   bool latency = true;
   bool energyPower = true;
@@ -93,7 +101,7 @@ int main (int argc, char *argv[]) {
   double txFactor = 0.93; // in mJ
   double rxFactor = 0.93; // in mJ
   double voltage = 3.56; // in W
-  double batteryCap = 500; // Battery capacity in mAh
+  double batteryCap = 5200; // Battery capacity in mAh
 
   CommandLine cmd (__FILE__);
   cmd.AddValue ("distance", "Distance in meters between the station and the access point", distance);
@@ -107,6 +115,10 @@ int main (int argc, char *argv[]) {
   cmd.AddValue ("spatialStreams", "Number of Spatial Streams", spatialStreams);
   cmd.AddValue ("batteryCap", "Battery Capacity in mAh", batteryCap);
   cmd.AddValue ("voltage", "Battery voltage in Volts", voltage);
+  cmd.AddValue ("txCurrent", "Tx current draw in mA", txCurrent);
+  cmd.AddValue ("rxCurrent", "Rx current draw in mA", rxCurrent);
+  cmd.AddValue ("idleCurrent", "Idle current draw in mA", idleCurrent);
+  cmd.AddValue ("ccaBusyCurrent", "CCA Busy voltage in Volts", ccaBusyCurrent);
   cmd.AddValue ("period", "Packet period in S", period);
   cmd.AddValue ("nWifi", "Number of stations", nWifi);
   cmd.AddValue ("trafficDirection", "Direction of traffic UL/DL", trafficDirection);
@@ -427,6 +439,13 @@ int main (int argc, char *argv[]) {
 
   double capacityJoules = (batteryCap / 1000.0) * voltage * 3600;
 
+  WifiRadioEnergyModelHelper radioEnergyHelper;
+
+  radioEnergyHelper.Set ("IdleCurrentA", DoubleValue (idleCurrent/1000));
+  radioEnergyHelper.Set ("TxCurrentA", DoubleValue (txCurrent/1000));
+  radioEnergyHelper.Set ("CcaBusyCurrentA", DoubleValue (ccaBusyCurrent/1000));
+  radioEnergyHelper.Set ("RxCurrentA", DoubleValue (rxCurrent/1000));
+
   if (!batteryRV) { // If the battery model is linear
     BasicEnergySourceHelper basicSourceHelper;
     basicSourceHelper.Set ("BasicEnergySupplyVoltageV", 
@@ -434,10 +453,9 @@ int main (int argc, char *argv[]) {
     basicSourceHelper.Set ("BasicEnergySourceInitialEnergyJ", 
                           DoubleValue (capacityJoules));
     EnergySourceContainer sources = basicSourceHelper.Install(wifiStaNodes);
-    WifiRadioEnergyModelHelper radioEnergyHelper;
+
     deviceModels = radioEnergyHelper.Install (staDevices, sources);
   }
-
   else { // If the battery model is RV
     RvBatteryModelHelper rvModelHelper;
     rvModelHelper.Set ("RvBatteryModelOpenCircuitVoltage", 
@@ -448,6 +466,7 @@ int main (int argc, char *argv[]) {
                       DoubleValue(capacityJoules / voltage));
     EnergySourceContainer sources = rvModelHelper.Install(wifiStaNodes);
     WifiRadioEnergyModelHelper radioEnergyHelper;
+    
     deviceModels = radioEnergyHelper.Install (staDevices, sources);
   }    
   //std::string s = "telemetry-23Bytes/"+std::to_string(nWifi)+"-"+period+"-"+std::to_string(MCS)+"-"+std::to_string(payloadSize);

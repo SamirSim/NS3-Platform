@@ -60,7 +60,7 @@ static void GenerateTraffic (Ptr<Socket> socket,
 int main (int argc, char *argv[]) {
   SeedManager::SetSeed (3);  // Changes seed from default of 1 to 3
   SeedManager::SetRun (2);  // Changes run number from default of 1 to 7
-  double simulationTime = 5; // Seconds
+  double simulationTime = 20; // Seconds
   uint32_t nWifi = 1; // Number of stations
   uint32_t MCS = 9; // Number of stations
   uint32_t txPower = 9; // Number of stations

@@ -55,6 +55,7 @@
                         <ul>
                     {% for error in form.packet_size_wifi.errors %}
                             <li style="color:red;">{{ error }}</li>
+                            <div id="errorTest" style="width: 0; height: 0;"></div>
                     {% endfor %}
                         </ul>
                     </div>
@@ -116,10 +117,10 @@
                     </div>
                     <div id="simulation_time_error">
                         <ul>
-                    {% if messages_error[0]!="" %}   
-                            <li style="color:red;">{{ messages_error[0] }}</li>
-                    {% endif %}         
-                        </ul>
+                            {% if messages_error[1]!="" %}   
+                                    <li style="color:red;">{{ messages_error[1] }}</li>
+                            {% endif %}         
+                                </ul>
                     </div>
                     <div class="mb-3">
                         <tr>
@@ -186,6 +187,10 @@
                         {{ form.cca_busy_current(class="form-control",id="cca_busy_current") }}
                     </div>
                     <div class="mb-3">
+                        {{ form.sleep_current.label(class="form-label", id="lbl_sleep_current") }}
+                        {{ form.sleep_current(class="form-control",id="sleep_current") }}
+                    </div>
+                    <div class="mb-3">
                         {{ form.voltage.label(class="form-label", id="lbl_voltage") }}
                         {{ form.voltage(class="form-control",id="voltage") }}
                     </div>
@@ -196,12 +201,12 @@
             </fieldset>
             <br>
             <div class="col-12">
-                {{ form.submit(class="btn btn-success btn-lg", id="submit_btn", style="position:relative; left:40%;") }}
+                <div class="d-flex justify-content-center m-3">
+                    {{ form.submit(class="btn btn-success btn-lg", id="submit_btn", style="position:relative; left:40%;") }}
+                    <span class="spinner-border text-success" id="spinner" role="status" aria-hidden="true"></span>       
+                </div>
             </div>
         </form>
-    </div>
-    <div class="d-flex justify-content-center m-3">
-        <span class="spinner-border text-success" id="spinner" role="status" aria-hidden="true"></span>       
     </div>
 <script  src="{{ url_for('static', filename='formScenario.js') }}"> </script>
 {% endblock content %}

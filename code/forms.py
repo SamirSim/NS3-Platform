@@ -6,7 +6,7 @@ from wtforms.i18n import messages_path
 from wtforms.validators import DataRequired, Length, NumberRange, Email, InputRequired, EqualTo
 
 class ScenarioForm(FlaskForm):
-    choices_network = [(0,'Choose network type'), ('Wi-Fi 802.11ac', 'Wi-Fi 802.11ac'), ('Wi-Fi 802.11ax', 'Wi-Fi 802.11ax'), ('LoRaWAN', 'LoRaWAN')] 
+    choices_network = [('Wi-Fi 802.11ac', 'Wi-Fi 802.11ac'), ('Wi-Fi 802.11ax', 'Wi-Fi 802.11ax'), ('LoRaWAN', 'LoRaWAN')] 
     choices_MCS = [('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'),('5', '5'),('6', '6'),('7', '7'),('8', '8'),
                     ('9', '9'),('10', '10'),('11', '11'),('12','Ideal Wi-Fi manager')]
     #choices_bandwidth = [(20, '20'),(40, '40'),(80, '80'),(160, '160')]
@@ -18,17 +18,17 @@ class ScenarioForm(FlaskForm):
                         ,(8,'MatrixPropagationLossModel'), (9,'NakagamiPropagationLossModel'), (10,'OkumuraHataPropagationLossModel'), (11,'RandomPropagationLossModel'), (12,'RangePropagationLossModel')
                         ,(13,'ThreeLogDistancePropagationLossModel'), (14,'TwoRayGroundPropagationLossModel')]
 
-    network = SelectField('Type of network', choices=choices_network)
-    traffic_dir = SelectField('Traffic direction', choices=[(0,'Choose traffic direction'),('upstream','Upstream'),('downstream', 'Downstream')], validators=[DataRequired()]) 
-    traffic_profile = SelectField('Traffic profile', choices=[(0,'Choose traffic profile'),('periodic','Periodic'),('cbr','CBR'),('vbr','VBR')], validators=[DataRequired()])
-    packet_size_wifi = IntegerField('Packet size, bytes', validators=[DataRequired(), NumberRange(min=1,max=1500,message='A packet size must be between 1 and 1500 bytes.')],default=1024)
-    packet_size_lorawan = IntegerField('Packet size, bytes', validators=[DataRequired(), NumberRange(min=1,max=230,message='A packet size must be between 1 and 230 bytes.')], default=23)
-    load_freq = DecimalField('Packet period, seconds', validators=[DataRequired(), NumberRange(min=0, message='A load frequency must not be negative.')], default=1)
-    mean_load = IntegerField('Mean load, Mbps', validators=[DataRequired(), NumberRange(min=0, message='A mean load must not be negative.')], default=2)
+    network = SelectField('Type of network', choices=choices_network, default='Wi-Fi 802.11ac')
+    traffic_dir = SelectField('Traffic direction', choices=[('upstream','Upstream'),('downstream', 'Downstream')], validators=[DataRequired()], default='upstream') 
+    traffic_profile = SelectField('Traffic profile', choices=[('periodic','Periodic'),('cbr','CBR'),('vbr','VBR')], validators=[DataRequired()], default='periodic')
+    packet_size_wifi = IntegerField('Packet size, bytes', validators=[DataRequired(), NumberRange(min=1,max=1500,message='Packet size must be between 1 and 1500 bytes.')],default=1024)
+    packet_size_lorawan = IntegerField('Packet size, bytes', validators=[DataRequired(), NumberRange(min=1,max=230,message='Packet size must be between 1 and 230 bytes.')], default=23)
+    load_freq = IntegerField('Packet period, seconds', validators=[DataRequired(), NumberRange(min=0, message='Load frequency must not be negative.')], default=1)
+    mean_load = IntegerField('Mean load, Mbps', validators=[DataRequired(), NumberRange(min=0, message='Mean load must not be negative.')], default=2)
     fps = IntegerField('FPS, Frames per Second', validators=[DataRequired(), NumberRange(min=0, message='FPS must not be negative.')], default=30)
-    num_devices = IntegerField('Number of end-devices', validators=[DataRequired(), NumberRange(min=1, message='A number of devices must not be negative.')]) 
-    dist_devices_gateway = IntegerField('Distance end-devices-gateway, meter', validators=[DataRequired()])
-    simulation_time = IntegerField('Simulation time, seconds', validators=[DataRequired(), NumberRange(min=5, message='Time must be > 5s')])
+    num_devices = IntegerField('Number of end-devices', validators=[DataRequired(), NumberRange(min=1, message='Number of end-devices must not be negative.')]) 
+    dist_devices_gateway = IntegerField('Distance end-devices-gateway, meter', validators=[DataRequired(), NumberRange(min=0, message='Distance between gateway and end-devices must not be negative.')])
+    simulation_time = IntegerField('Simulation time, seconds', validators=[DataRequired(), NumberRange(min=0, message='Time must be > 5s')])
     hidden_devices = RadioField('Hidden devices?', choices = [('1', 'Yes'), ('0', 'No')], default='0')
     sf = SelectField('Spreading factor (SF)',choices= choices_sf, default='0')
     change = BooleanField('Change advanced parameters', default=0)
@@ -40,12 +40,13 @@ class ScenarioForm(FlaskForm):
     mcs = SelectField('MCS', choices=choices_MCS, default='12')
     bandwidth = SelectField('Bandwidth', choices=[])
     spatial_streams = SelectField('Spatial streams', choices=choices_spatial_streams, default='1')
-    tx_current = DecimalField('Tx current draw, mA', validators=[DataRequired(), NumberRange(min=0, message='Tx current draw must not be negative.')], default=107)
-    rx_current = DecimalField('Rx current draw, mA', validators=[DataRequired(), NumberRange(min=0, message='Rx current draw must not be negative.')], default=40)
-    idle_current = DecimalField('Idle current draw, mA',validators=[DataRequired(), NumberRange(min=0, message='Idle current draw must not be negative.')], default=1)
-    cca_busy_current = DecimalField('CCA_Busy current draw, mA',validators=[DataRequired(), NumberRange(min=0, message='CCA_Busy current draw must not be negative.')], default=1)
-    voltage = DecimalField('Voltage, volts',validators=[DataRequired(), NumberRange(min=0, message='Voltage must not be negative.')], default=12)
-    battery_cap = IntegerField('Battery capacity, mAh',validators=[DataRequired(), NumberRange(min=0, message='A battery ca must not be negative.')], default=5200)
+    tx_current = IntegerField('Tx current draw, mA', validators=[DataRequired(), NumberRange(min=0, message='Tx current draw must not be negative.')], default=107)
+    rx_current = IntegerField('Rx current draw, mA', validators=[DataRequired(), NumberRange(min=0, message='Rx current draw must not be negative.')], default=40)
+    idle_current = IntegerField('Idle current draw, mA',validators=[DataRequired(), NumberRange(min=0, message='Idle current draw must not be negative.')], default=1)
+    cca_busy_current = IntegerField('CCA_Busy current draw, mA',validators=[DataRequired(), NumberRange(min=0, message='CCA_Busy current draw must not be negative.')], default=1)
+    sleep_current = DecimalField('Sleep current draw, mA',validators=[DataRequired(), NumberRange(min=0, message='Sleep current draw must not be negative.')], default=0.01)
+    voltage = IntegerField('Voltage, volts',validators=[DataRequired(), NumberRange(min=0, message='Voltage must not be negative.')], default=12)
+    battery_cap = IntegerField('Battery capacity, mAh',validators=[DataRequired(), NumberRange(min=0, message='Battery capacity must not be negative.')], default=5200)
     submit = SubmitField('Submit')
 
 class RegisterForm(FlaskForm):

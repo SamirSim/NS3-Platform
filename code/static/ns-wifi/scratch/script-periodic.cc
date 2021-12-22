@@ -459,7 +459,7 @@ int main (int argc, char *argv[]) {
   else { // If the battery model is RV
     RvBatteryModelHelper rvModelHelper;
     rvModelHelper.Set ("RvBatteryModelOpenCircuitVoltage", 
-                      DoubleValue(voltage));
+                      DoubleValue(2*voltage));
     rvModelHelper.Set ("RvBatteryModelCutoffVoltage", 
                       DoubleValue(0)); 
     rvModelHelper.Set ("RvBatteryModelAlphaValue", 

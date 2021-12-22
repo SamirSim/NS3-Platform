@@ -128,7 +128,7 @@ RvBatteryModel::GetRemainingEnergy (void)
 {
   NS_LOG_FUNCTION (this);
   UpdateEnergySource ();
-  std::cout << "Total Consumed energy = " << m_alpha * GetSupplyVoltage () *  (1 - m_batteryLevel) << std::endl;
+  std::cout << "Consumed energy in battery = " << m_alpha * GetSupplyVoltage () *  (1 - m_batteryLevel) << std::endl;
   return m_alpha * GetSupplyVoltage () * m_batteryLevel;
 }
 

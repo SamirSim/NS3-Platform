@@ -1,5 +1,6 @@
 from bson.objectid import ObjectId
 from flask import Flask, render_template, request, url_for, redirect, session, flash
+from flask.scaffold import F
 from flask_wtf import FlaskForm
 from forms import ScenarioForm, RegisterForm, LoginForm
 import json, datetime
@@ -52,11 +53,11 @@ def register():
         valid = True
         if existing_user != None:
             valid=False
-            flash("This username has already existed.", "warning")  
+            flash("This username already exists.", "warning")  
 
         if existing_email != None:
             valid=False  
-            flash("This email address has already existed.", "warning")   
+            flash("This email address already exists.", "warning")   
         if valid:    
             hasspass = bcrypt.hashpw(form.password.data.encode('utf-8'), bcrypt.gensalt()) 
             session['hasspass'] = hasspass
@@ -80,7 +81,7 @@ def dashboard():
 @app.route('/', methods = ['POST', 'GET'])
 def index():
     form = ScenarioForm()
-    messages_error = [""]
+    messages_error = ["", ""]
    # session.clear()
     if request.method == "POST" :
         valid = True
@@ -88,8 +89,12 @@ def index():
         network = form.network.data
         num_devices = form.num_devices.data
         dist_devices_gateway = form.dist_devices_gateway.data
+        simulation_time = form.simulation_time.data
         if num_devices<1 :
-            valid =False    
+            valid =False  
+        if simulation_time < 5:
+            valid = False
+            messages_error[1] = "Simulation time must be > 5."
         if network != "LoRaWAN" :
             packet_size = form.packet_size_wifi.data
             print("Packet size, WiFi = "+str(packet_size), type(packet_size))
@@ -98,7 +103,7 @@ def index():
                 print("WiFI-False")
             if dist_devices_gateway<0 or dist_devices_gateway>10 :
                 valid = False    
-                messages_error[0] = "Distance must not be over 10 meters."
+                messages_error[0] = "Distance must be between 0 and 10 meters."
         else :
             packet_size = form.packet_size_lorawan.data
             print("Packet size, LoRaWAN = "+str(packet_size), type(packet_size))
@@ -107,7 +112,7 @@ def index():
                 print("LoRaWAN-False")
             if dist_devices_gateway<0 or dist_devices_gateway>8000 :
                 valid = False
-                messages_error[0] = "Distance must not be over 8000 meters."   
+                messages_error[0] = "Distance must be between 0 and 8000 meters."   
         if form.validate() or valid :       
             session['network'] = form.network.data
             session['traffic_direction'] = form.traffic_dir.data
@@ -145,6 +150,8 @@ def index():
             session['idle_current'] = str(idle_current)
             cca_busy_current = form.cca_busy_current.data
             session['cca_busy_current'] = str(cca_busy_current)
+            sleep_current = form.sleep_current.data
+            session['sleep_current'] = str(sleep_current)
             voltage = form.voltage.data
             session['voltage'] = str(voltage)
             session['battery_capacity'] = str(form.battery_cap.data)
@@ -171,6 +178,7 @@ def index():
             os.environ['RXCURRENT']=session['rx_current']
             os.environ['IDLECURRENT']=session['idle_current']
             os.environ['CCABUSYCURRENT']=session['cca_busy_current']
+            os.environ['SLEEP']=session['sleep_current']
             os.environ['VOLTAGE']=session['voltage']
             os.environ['BATTERYCAP']=session['battery_capacity'] 
             #advanced varables for Wi-Fi only
@@ -343,4 +351,4 @@ def logout():
     return redirect(url_for('index'))
 
 if __name__ == "__main__" :
-    app.run(debug=True, reloader_interval=5)
+    app.run(debug=True, reloader_interval=10)

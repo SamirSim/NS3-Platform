@@ -310,7 +310,7 @@ def index():
                 return render_template("results.html", jResults=jResults)
             except Exception as e:
                 print('error:', e)    
-                flash("No access at the simulation!", "warning")             
+                flash("There was a problem during simulation.", "warning")             
     print("Messages error distance ="+messages_error[0])   
     return render_template("index.html", form=form, messages_error=messages_error)
 

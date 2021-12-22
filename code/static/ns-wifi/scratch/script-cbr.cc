@@ -127,7 +127,9 @@ int main (int argc, char *argv[]) {
   LogComponentEnableAll (LOG_PREFIX_NODE);
   LogComponentEnableAll (LOG_PREFIX_TIME);
 
-  YansWifiChannelHelper channel = YansWifiChannelHelper::Default ();
+  YansWifiChannelHelper channel;
+  channel.AddPropagationLoss ("ns3::"+propLoss);
+  channel.SetPropagationDelay("ns3::"+propDelay);
 
   NodeContainer wifiStaNodes;
   wifiStaNodes.Create (nWifi);

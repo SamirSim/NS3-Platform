@@ -21,5 +21,3 @@ it need to buid NS-3 with waf. Navigate inside the directory of NS3 (wifi simulm
 
 # Run project
 ./waf --run "scratch/wifi-overload-throughput-ac.cc --distance=$DISTANCE --nWifi=$NUMDEVICES --trafficDirection=$TRAFFICDIR --trafficProfile=$TRAFFICPROF --payloadSize=$PACKETSIZE --loadFreq=$LOADFREQ --meanLoad=$MEANLOAD --hiddenDevices=$HIDDENDEVICES --mcs=$MCS --channelWidth=$BANDWIDTH --propDelay=$PROPDELAY --propLoss=$PROPLOSS --spatialStreams=$SPATIALSTREAMS --tx=$TX --rx=$RX --txFactor=$TXFACTOR --rxFactor=$RXFACTOR --voltage=$VOLTAGE --batteryCap=$BATTERYCAP"
-
-
